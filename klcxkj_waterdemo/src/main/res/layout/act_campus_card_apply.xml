@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:id="@+id/apply_layout" >
+
+    <include layout="@layout/top_title_style"></include>
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="6dp"
+		android:background="@color/btn_text"/>
+    <RelativeLayout
+		android:layout_width="match_parent"
+	        android:layout_height="55dp"
+	       >
+	        <EditText
+				android:layout_toRightOf="@+id/campus_Card_name"
+	            android:id="@+id/apply_name"
+				android:layout_centerVertical="true"
+		        android:textColor="@color/hint"
+		        android:hint="@string/hint_name"
+		        style="@style/input_fullline_bg_while"/>
+	        <TextView
+				android:id="@+id/campus_Card_name"
+				style="@style/label"
+	            android:text="@string/rechage_user_name"
+	            android:paddingLeft="15dip"
+				android:layout_centerVertical="true"/>
+	        <ImageView
+			    android:layout_width="match_parent"
+			    android:layout_height="1dp"
+			    android:layout_alignParentBottom="true"
+				android:layout_marginLeft="15dp"
+				android:layout_marginRight="17dp"
+			    android:background="@color/home_campus_card_line"/>
+    </RelativeLayout>
+    <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/white">
+
+	        <TextView 
+	            android:id="@+id/text_apply_sex"
+	            style="@style/label" 
+	            android:layout_centerVertical="true"
+	            android:text="@string/campus_card_apply_sex"
+	            android:paddingLeft="15dip"/>
+
+	        <RadioGroup 
+		        android:id="@+id/apply_sex"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_centerVertical="true"
+				android:gravity="center_vertical"
+		        android:layout_marginLeft="15dp"
+		        android:layout_toRightOf="@+id/text_apply_sex"
+		        android:orientation="horizontal">
+		        <RadioButton
+                    android:text="男"
+					android:padding="10dp"
+		            android:textColor="@color/list_name_text"
+	            	android:button="@drawable/radio"
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"/>
+		        <RadioButton
+                    android:layout_marginLeft="15dp"
+		            android:text="女"
+					android:padding="10dp"
+					android:button="@drawable/radio"
+		            android:textColor="@color/list_name_text"
+					android:layout_height="wrap_content"
+					android:layout_width="wrap_content"/>
+        
+   			</RadioGroup>
+	        
+	        
+			<ImageView
+			    android:layout_width="match_parent"
+			    android:layout_height="1dp"
+			    android:layout_alignParentBottom="true"
+				android:layout_marginLeft="15dp"
+				android:layout_marginRight="17dp"
+			    android:background="@color/home_campus_card_line"/>
+    </RelativeLayout>
+    <RelativeLayout android:layout_width="match_parent"
+	        android:layout_height="55dp">
+	        <EditText
+				android:layout_toRightOf="@+id/campus_card_ID"
+	            android:id="@+id/apply_IDCard"
+		        android:textColor="@color/hint"
+				android:layout_centerVertical="true"
+		        android:digits="0123456789abcdefghigklmnopqrstuvwxyz"
+		        android:hint="@string/my_change_myinfo_hint"
+		        style="@style/input_fullline_bg_while"/>
+	        <TextView
+				android:id="@+id/campus_card_ID"
+				style="@style/label"
+	            android:text="@string/campus_card_apply_student_number"
+	            android:paddingLeft="15dip"
+				android:layout_centerVertical="true"/>
+	        
+	        <ImageView
+			    android:layout_width="match_parent"
+			    android:layout_height="1dp"
+			    android:layout_alignParentBottom="true"
+				android:layout_marginLeft="15dp"
+				android:layout_marginRight="17dp"
+			    android:background="@color/home_campus_card_line"/>
+    </RelativeLayout>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="6dp"
+		android:background="@color/btn_text"></View>
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:id="@+id/apply_building_layout"
+		>
+
+		<TextView
+			style="@style/label"
+			android:id="@+id/mine_ban"
+			android:layout_centerVertical="true"
+			android:paddingLeft="15dp"
+			android:text="@string/campus_card_apply_dormitory_ban"
+			android:textColor="@color/label_light" />
+
+		<TextView
+			android:id="@+id/apply_building"
+			android:layout_toRightOf="@+id/mine_ban"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerVertical="true"
+			android:layout_marginLeft="12dp"
+			android:textColor="@color/txt_three"
+			android:textSize="16sp" />
+
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:layout_centerVertical="true"
+			android:layout_marginRight="17dp"
+			android:src="@drawable/i_arrow_list_pre" />
+	</RelativeLayout>
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:layout_marginRight="17dp"
+		android:layout_marginLeft="15dp"
+		android:background="#e5e5e5"></View>
+	<RelativeLayout
+		android:id="@+id/apply_room_layout"
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		>
+
+		<TextView
+			style="@style/label"
+			android:id="@+id/mine_room"
+			android:layout_centerVertical="true"
+			android:paddingLeft="15dp"
+			android:text="@string/campus_card_apply_dormitory_room"
+			android:textColor="@color/label_light" />
+
+		<TextView
+			android:id="@+id/apply_room"
+			android:layout_toRightOf="@+id/mine_room"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerVertical="true"
+			android:layout_marginLeft="12dp"
+			android:textColor="@color/txt_three"
+			android:textSize="16sp" />
+
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:layout_centerVertical="true"
+			android:layout_marginRight="17dp"
+			android:src="@drawable/i_arrow_list_pre" />
+	</RelativeLayout>
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="6dp"
+		android:background="@color/btn_text"></View>
+
+	<Button
+		android:id="@+id/apply_btn"
+		android:layout_width="match_parent"
+		android:layout_height="45dp"
+		android:layout_marginTop="30dp"
+		android:layout_marginBottom="7dip"
+		android:layout_marginLeft="24dp"
+		android:layout_marginRight="24dp"
+		android:background="@drawable/btn_yuyue"
+		android:text="@string/submit"
+		android:textColor="@color/btn_text"
+		android:textSize="18sp" />
+
+</LinearLayout>

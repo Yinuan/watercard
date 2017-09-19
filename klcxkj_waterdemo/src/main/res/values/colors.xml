@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <color name="btn_text">#F5F5F5</color>
+
+    <color name="blackaph">#1f000000</color>
+
+    <color name="text_hint">#CDCDCD</color>
+    <color name="white">#ffffffff</color>
+    <color name="txt_one">#333333</color>
+    <color name="txt_two">#666666</color>
+    <color name="txt_three">#999999</color>
+    <color name="code_get">#39a3fd</color>
+    <color name="label_light">#39464a</color>
+    <color name="monney">#f74c31</color>
+    <color name="home_campus_card_line">#f1f1f1</color>
+    <color name="text_hint_miss">#01a5ec</color>
+    <color name="bg_view">#e5e5e5</color>
+    <color name="list_name_text">#a2aaac</color>
+    <color name="hint">#a2aaac</color>
+</resources>

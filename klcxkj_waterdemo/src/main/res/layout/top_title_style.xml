@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/top_menu"
+    android:layout_alignParentTop="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <View
+        android:id="@+id/top_menu_view"
+        android:layout_width="match_parent"
+        android:background="#12aaf6"
+        android:layout_height="20dp">
+
+    </View>
+    <!--标题栏-->
+    <RelativeLayout
+        android:layout_alignParentTop="true"
+        android:background="#12aaf6"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <LinearLayout
+            android:id="@+id/top_btn_back"
+            style="@style/top_btn"
+            android:layout_alignParentLeft="true"
+            android:gravity="center|left"
+            android:paddingLeft="15dp"
+            >
+            <TextView style="@style/top_btn_text"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/top_title"
+            android:textColor="@color/btn_text"
+            android:textSize="20sp"
+            android:singleLine="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            />
+
+        <TextView
+            android:id="@+id/top_right_text"
+            android:textColor="@color/btn_text"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:text="xx大学"
+            android:layout_marginRight="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            />
+
+
+    </RelativeLayout>
+</LinearLayout>

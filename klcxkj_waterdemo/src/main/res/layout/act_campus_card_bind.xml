@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+<include layout="@layout/top_title_style"></include>
+    <LinearLayout
+        android:id="@+id/layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_menu"
+        android:orientation="vertical" >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="#000000"
+            android:paddingLeft="15dp"
+            android:textSize="15sp"
+            android:gravity="center_vertical"
+            android:background="@color/btn_text"
+            android:text="@string/campus_card_bind_cardDetails" />
+
+        <RelativeLayout
+            android:id="@+id/card_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <EditText
+                android:id="@+id/cardID"
+                style="@style/input_fullline"
+                android:hint="@string/hint_cardID"
+                android:inputType="number"
+                android:paddingLeft="80dip"
+                android:paddingRight="10dip" />
+
+            <TextView
+                style="@style/label"
+                android:layout_alignBaseline="@+id/cardID"
+                android:paddingLeft="15dip"
+                android:text="@string/campus_card_bind_cardID" />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/bg_view"/>
+        <RelativeLayout
+            android:id="@+id/card_pin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <EditText
+                android:id="@+id/password"
+                style="@style/input_fullline"
+                android:hint="@string/campus_card_bind_cardPassword_hint"
+                android:inputType="number"
+                android:paddingLeft="80dip"
+                android:paddingRight="10dip" />
+
+            <TextView
+                style="@style/label"
+                android:layout_alignBaseline="@+id/password"
+                android:paddingLeft="15dip"
+                android:text="@string/campus_card_bind_cardPassword" />
+        </RelativeLayout>
+
+       <View
+           android:layout_width="match_parent"
+           android:layout_height="6dp"
+           android:background="@color/btn_text"></View>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_bind_next"
+        android:layout_width="match_parent"
+        android:layout_height="42dip"
+        android:layout_below="@+id/layout_content"
+        android:layout_marginBottom="7dip"
+        android:layout_marginLeft="18dip"
+        android:layout_marginRight="18dip"
+        android:layout_marginTop="30dip"
+        android:background="@drawable/btn_yuyue"
+        android:onClick="onClick_login"
+        android:text="@string/bind"
+        android:textColor="@color/btn_text"
+        android:textSize="18sp" />
+
+
+
+</RelativeLayout>

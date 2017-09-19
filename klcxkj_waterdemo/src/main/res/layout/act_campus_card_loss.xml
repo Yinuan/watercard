@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+<include layout="@layout/top_title_style"></include>
+    <LinearLayout android:id="@+id/layout_content"
+        android:layout_below="@+id/top_menu"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="6dp"
+			android:background="@color/btn_text"></View>
+	    <RelativeLayout android:layout_width="match_parent"
+	        android:layout_height="wrap_content">
+	        <EditText android:id="@+id/edit_cardID"
+				android:textSize="18sp"
+		        android:paddingRight="10dip"
+		        android:paddingLeft="70dip"
+		        android:enabled="false"
+				android:layout_marginRight="15dp"
+				android:layout_marginLeft="15dp"
+		        android:background="@drawable/login_input_list_nor"
+		        style="@style/input_fullline"/>
+	        <TextView style="@style/label" 
+	            android:text="@string/rechage_cardID"
+	            android:paddingLeft="15dip"
+	            android:layout_alignBaseline="@+id/edit_cardID"/>
+	    </RelativeLayout>
+	    
+	    <RelativeLayout android:layout_width="match_parent"
+	        android:layout_height="wrap_content">
+	        <EditText android:id="@+id/edit_user_name"
+		        android:paddingRight="10dip"
+		        android:paddingLeft="70dp"
+		        android:enabled="false"
+				android:textSize="18sp"
+		        android:background="@drawable/login_input_list_nor"
+				android:layout_marginRight="15dp"
+				android:layout_marginLeft="15dp"
+		        style="@style/input_fullline"/>
+	        <TextView style="@style/label" 
+	            android:text="@string/rechage_user_name"
+	            android:paddingLeft="15dip"
+	            android:layout_alignBaseline="@+id/edit_user_name"/>
+	    </RelativeLayout>
+	    
+	    <RelativeLayout android:layout_width="match_parent"
+	        android:layout_height="wrap_content">
+	        <EditText android:id="@+id/edit_card_status"
+		        android:paddingRight="10dip"
+		        android:paddingLeft="70dp"
+		        android:enabled="false"
+				android:text="正常"
+				android:textColor="@color/code_get"
+				android:layout_marginRight="15dp"
+				android:layout_marginLeft="15dp"
+		        android:background="@drawable/login_input_list_nor"
+		        style="@style/input_fullline"/>
+	        <TextView style="@style/label" 
+	            android:text="@string/campus_card_status"
+	            android:paddingLeft="15dip"
+	            android:layout_alignBaseline="@+id/edit_card_status"/>
+	    </RelativeLayout>
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="6dp"
+			android:background="@color/btn_text"></View>
+	</LinearLayout>
+    
+    <Button
+         android:id="@+id/button_bind_next"
+         android:layout_below="@+id/layout_content"
+         android:onClick="onClick_login"
+         android:layout_width="match_parent"
+         android:layout_height="45dp"
+         android:layout_marginTop="30dip"
+         android:layout_marginBottom="7dip"
+         android:layout_marginLeft="18dip"
+         android:layout_marginRight="18dip"
+         android:background="@drawable/btn_yuyue"
+         android:text="@string/submit"
+         android:textColor="@color/btn_text"
+         android:textSize="18sp" 
+         />
+
+
+</RelativeLayout>

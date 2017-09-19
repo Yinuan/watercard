@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">testPackageSize</string>
+
+    <string name="submit_rechage">立即充值</string>
+    <string name="rechang_monney_value_hint">请选择充值金额</string>
+    <string name="rechage_money_value_none">未领金额:</string>
+    <string name="rechage_user_balance">卡余额：</string>
+    <string name="rechage_user_name">姓&#8194;&#8194;名：</string>
+    <string name="rechage_cardID">卡&#8194;&#8194;号：</string>
+    <string name="campus_card_apply_sex">性&#8194;&#8194;别:</string>
+    <string name="campus_card_apply_student_number">身份证号:</string>
+    <string name="campus_card_apply_dormitory_ban">楼&#8194;&#8194;栋:</string>
+    <string name="campus_card_apply_dormitory_room">房间号:</string>
+    <string name="timeout_error">请求超时，请检查您的网络.</string>
+    <string name="operate_error">操作失败，请稍候重试.</string>
+    <string name="campus_card_rechage_done">完成</string>
+    <string name="campus_card_rechage">充值</string>
+    <string name="campus_card_rechage_success">您已成功充值%s，\n请到附近的热水自助终端领取您的卡片。</string>
+    <string name="campus_card_rechage_success2">您已成功充值%s，\n请到附近的热水自助终端把钱转入卡里。</string>
+
+    <string name="hint_cardID">请输入卡号</string>
+    <string name="campus_card_bind_cardDetails">将卡插入转账充值机上以获取卡片信息</string>
+    <string name="campus_card_bind_cardID">卡号:</string>
+    <string name="campus_card_bind_cardPassword_hint">请输入PIN码</string>
+    <string name="campus_card_bind_cardPassword">PIN码:</string>
+    <string name="bind">绑定</string>
+    <string name="submit">提交</string>
+    <string name="campus_card_status">卡状态：</string>
+
+    <string name="pop_title">警告</string>
+    <string name="pop_content">解除绑定就丢失账户信息以及账户余额等，请谨慎操作!</string>
+    <string name="dialog_content_fill_card">补卡后，原卡将无法使用请谨慎补卡</string>
+    <string name="hint_name">请输入姓名</string>
+    <string name="my_change_myinfo_hint">请输入身份证号</string>
+    <string name="done">确定</string>
+    <string name="bind_card">绑卡</string>
+    <string name="hint_city_name">请输入城市名</string>
+</resources>

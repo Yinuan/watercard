@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+
+    <include layout="@layout/top_title_style"></include>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="@color/btn_text"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+        <TextView
+            android:id="@+id/fill_cardId"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/card_id_txt_f"
+            android:textColor="@color/txt_three"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            android:paddingLeft="12dp"
+            />
+        <TextView
+            android:id="@+id/card_id_txt_f"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dip"
+            android:textSize="18dp"
+            android:textColor="@color/txt_one"
+            android:text="@string/rechage_cardID"
+            />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="17dp"
+            android:background="@color/home_campus_card_line"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+    <TextView
+        android:id="@+id/fill_cardName"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/edit_apply_name_f"
+        android:textColor="@color/txt_three"
+        android:gravity="center_vertical"
+        android:textSize="18sp"
+        android:paddingLeft="12dp"
+        />
+    <TextView
+        android:id="@+id/edit_apply_name_f"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dip"
+        android:textSize="18dp"
+        android:textColor="@color/txt_one"
+        android:text="@string/rechage_user_name"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="17dp"
+        android:background="@color/home_campus_card_line"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+        <TextView
+            android:id="@+id/fill_cardSex"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/text_apply_sex_show_f"
+            android:textColor="@color/txt_three"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            android:paddingLeft="12dp"
+            />
+        <TextView
+            android:id="@+id/text_apply_sex_show_f"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dip"
+            android:textSize="18dp"
+            android:textColor="@color/txt_one"
+            android:text="@string/campus_card_apply_sex"
+            />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="17dp"
+            android:background="@color/home_campus_card_line"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+        <TextView
+            android:id="@+id/fill_cardIDCard"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/edit_apply_student_number_f"
+            android:textColor="@color/txt_three"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            android:paddingLeft="12dp"
+            />
+        <TextView
+            android:id="@+id/edit_apply_student_number_f"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dip"
+            android:textSize="18dp"
+            android:textColor="@color/txt_one"
+            android:text="@string/campus_card_apply_student_number"
+            />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="17dp"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="@color/btn_text"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+        <TextView
+            android:id="@+id/fill_cardBuilding"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/layout_dormitory_ban_f"
+            android:textColor="@color/txt_three"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            android:paddingLeft="12dp"
+            />
+        <TextView
+            android:id="@+id/layout_dormitory_ban_f"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dip"
+            android:textSize="18dp"
+            android:textColor="@color/txt_one"
+            android:text="@string/campus_card_apply_dormitory_ban"
+            />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="17dp"
+            android:background="@color/home_campus_card_line"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+        <TextView
+            android:id="@+id/fill_cardRoom"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/dormitory_room_f"
+            android:textColor="@color/txt_three"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            android:paddingLeft="12dp"
+            />
+        <TextView
+            android:id="@+id/dormitory_room_f"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dip"
+            android:textSize="18dp"
+            android:textColor="@color/txt_one"
+            android:text="@string/campus_card_apply_dormitory_room"
+            />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="17dp"/>
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="@color/btn_text"/>
+    <Button
+        android:id="@+id/button_submit"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginBottom="7dip"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn_yuyue"
+        android:text="@string/submit"
+        android:textColor="@color/btn_text"
+        android:textSize="18sp" />
+
+</LinearLayout>
