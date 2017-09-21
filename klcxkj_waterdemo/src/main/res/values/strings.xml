@@ -34,5 +34,8 @@
     <string name="my_change_myinfo_hint">请输入身份证号</string>
     <string name="done">确定</string>
     <string name="bind_card">绑卡</string>
+    <string name="bind_card_name">卡号:</string>
+    <string name="bind_card_stuts">状态: </string>
     <string name="hint_city_name">请输入城市名</string>
+    <string name="campus_card_bind_title_2">绑定校园卡以查看余额</string>
 </resources>

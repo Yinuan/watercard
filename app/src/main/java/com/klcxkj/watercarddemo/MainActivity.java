@@ -5,7 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.klcxkj.reshui.Main2Activity;
+import com.klcxkj.reshui.ACT_CardCenter;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,7 +17,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, Main2Activity.class));
+                startActivity(new Intent(MainActivity.this, ACT_CardCenter.class));
+
             }
         });
     }

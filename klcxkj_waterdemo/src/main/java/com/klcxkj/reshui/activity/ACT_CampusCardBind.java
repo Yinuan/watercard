@@ -1,5 +1,6 @@
 package com.klcxkj.reshui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.klcxkj.reshui.tools.StringConfig;
 import com.klcxkj.reshui.util.AppPreference;
 import com.klcxkj.reshui.util.GlobalTools;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -54,21 +56,29 @@ public class ACT_CampusCardBind extends ACT_Network {
 		mUserInfo =AppPreference.getInstance().getUserInfo();
 		Log.d("ACT_CampusCardBind", "mUserInfo:" + mUserInfo);
 		cardInfo =AppPreference.getInstance().getCardInfo();
-		if (cardInfo !=null){
-			mButtonBindNext.setText("卡片解绑");
-			layout.setVisibility(View.GONE);
-			mEditCardID.setText(cardInfo.getCardID());
-			mEditCardID.setEnabled(false);
-		}else {
+		Intent intent =getIntent();
+		String cardIsBind =intent.getStringExtra("isBind");
+		if (cardIsBind.equals("0")){
 			mButtonBindNext.setText("绑定");
+		}else {
+			if (cardInfo !=null){
+				mButtonBindNext.setText("卡片解绑");
+				layout.setVisibility(View.GONE);
+				mEditCardID.setText(cardInfo.getCardID());
+				mEditCardID.setEnabled(false);
+			}else {
+				mButtonBindNext.setText("卡片已绑定，但无卡片信息");
+				loadCardDatasforServer();
+			}
 		}
+
 	}
 
 	private void initView() {
 		mButtonBindNext = (Button)this.findViewById(R.id.button_bind_next);
 		mEditCardID = (EditText)this.findViewById(R.id.cardID);
 		mEditPassword = (EditText)this.findViewById(R.id.password);
-		layout =findViewById(R.id.card_pin);
+		layout = (RelativeLayout) findViewById(R.id.card_pin);
 		showMenu("绑定校园卡");
 	}
 
@@ -104,6 +114,7 @@ public class ACT_CampusCardBind extends ACT_Network {
 					map.put("ServerIP",mUserInfo.getServerIP());
 					map.put("ServerPort",mUserInfo.getServerPort()+"");
 					sendPostRequest(unbind_url,map);
+					progress = GlobalTools.getInstance().showDailog(ACT_CampusCardBind.this,"解除绑定中..");
 				}
 			}
 		});
@@ -113,6 +124,7 @@ public class ACT_CampusCardBind extends ACT_Network {
 	protected void handleErrorResponse(String url, VolleyError error) {
 		super.handleErrorResponse(url, error);
 		progress.dismiss();
+		mButtonBindNext.setEnabled(true);
 		if(error instanceof TimeoutError){
 			toast(R.string.timeout_error);
 		}else{
@@ -124,6 +136,7 @@ public class ACT_CampusCardBind extends ACT_Network {
 	protected void handleResponse(String url, JSONObject json) {
 		super.handleResponse(url, json);
 		//将卡片信息中的绑卡ID保存起来
+		Log.d("ACT_CampusCardBind", "json:" + json);
 		Gson gson =new Gson();
 		BaseBo baseBo =gson.fromJson(json.toString(),CardInfo.class);
 		if (baseBo.isSuccess()){
@@ -133,6 +146,7 @@ public class ACT_CampusCardBind extends ACT_Network {
 				//更新用户信息
 				mUserInfo.setEmployeeID(Integer.valueOf(cardInfoNew.getEmployeeID()));
 				AppPreference.getInstance().saveLoginUser(mUserInfo);
+				EventBus.getDefault().postSticky("cardIsbinded");
 				//查询卡片信息
 				loadCardDatasforServer();
 			}else if (url.contains(unbind_url)){
@@ -142,6 +156,7 @@ public class ACT_CampusCardBind extends ACT_Network {
 				//①更新userInfo
 				mUserInfo.setEmployeeID(0);
 				AppPreference.getInstance().saveLoginUser(mUserInfo);
+				EventBus.getDefault().postSticky("cardrelievebinded");
 				finish();
 
 			}else if (url.contains(queryCardInfo)){//查询卡片信息
@@ -170,6 +185,11 @@ public class ACT_CampusCardBind extends ACT_Network {
 		map.put("ServerIP",mUserInfo.getServerIP());
 		map.put("ServerPort",mUserInfo.getServerPort()+"");
 		sendPostRequest(queryCardInfo,map);
+		Log.d("ACT_CardCenter", "userInfo.getPrjID():" + mUserInfo.getPrjID());
+		Log.d("ACT_CardCenter", "userInfo.getEmployeeID():" + mUserInfo.getEmployeeID());
+		Log.d("ACT_CardCenter", mUserInfo.getServerIP());
+		Log.d("ACT_CardCenter", "userInfo.getServerPort():" + mUserInfo.getServerPort());
+		progress = GlobalTools.getInstance().showDailog(ACT_CampusCardBind.this,"查询卡片信息");
 	}
 
 }

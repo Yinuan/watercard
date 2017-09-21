@@ -1,12 +1,14 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
 
+group = 'com.github.Yinuan'
 android {
     compileSdkVersion 26
     buildToolsVersion "25.0.3"
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 26
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
 
@@ -22,29 +24,19 @@ android {
 
     lintOptions {
         abortOnError false
-        }
+    }
 }
 
-task makeJar(type: Copy) {
-    delete 'build/libs/watercard.jar'
-    from('build/intermediates/bundles/debug/')
-    into('build/libs/')
-    include('classes.jar')
-    rename('classes.jar', 'watercard.jar')
-}
-
-makeJar.dependsOn(build)
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     //没有使用特殊Header，可以不加这行
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support:recyclerview-v7:26.+'
+    /*eventbus*/
+    compile files('libs/alipaysdk.jar')
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
     compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
-    /*eventbus*/
     compile 'org.greenrobot:eventbus:3.0.0'
-    compile 'eu.the4thfloor.volley:com.android.volley:2015.05.28'
     compile 'com.google.code.gson:gson:2.8.1'
-    compile files('libs/alipaysdk.jar')
-
+    compile 'com.navercorp.volleyextensions:volley-views:2.0.1'
+    compile 'com.android.support:appcompat-v7:+'
+    compile 'com.android.support:recyclerview-v7:+'
 }

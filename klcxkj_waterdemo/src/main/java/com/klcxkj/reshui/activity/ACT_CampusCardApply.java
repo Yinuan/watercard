@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.text.InputFilter;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -146,7 +145,7 @@ public class ACT_CampusCardApply extends ACT_Network implements View.OnClickList
 		//性别选择
 		sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 			@Override
-			public void onCheckedChanged(RadioGroup radioGroup, @IdRes int checkId) {
+			public void onCheckedChanged(RadioGroup radioGroup,  int checkId) {
 				RadioButton radioButton = (RadioButton) findViewById(checkId);
 				String str =radioButton.getText().toString();
 				if (str.equals("男")){

@@ -194,7 +194,7 @@ public class AppPreference {
      */
     public CardInfo getCardInfo() {
         if (mCfgPreference != null) {
-        	String encyptPhone = mCfgPreference.getString("CardInfo", "");
+        	String encyptPhone = mCfgPreference.getString("CardInfo_custom", "");
         	if(!StringUtils.isEmpty(encyptPhone))
 				try {
 					String json = SimpleCrypto.decrypt(SEED, encyptPhone);
