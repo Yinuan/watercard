@@ -6,391 +6,416 @@
     android:layout_height="match_parent">
 
     <include layout="@layout/top_title_style"></include>
-    <LinearLayout
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="100dp">
-
-        <FrameLayout
+        android:layout_height="match_parent"
+        android:background="@color/btn_text"
+        app:srlPrimaryColor="@color/text_hint"
+        app:srlAccentColor="@color/txt_two"
+        app:srlEnablePreviewInEditMode="true">
+        <!--srlAccentColor srlPrimaryColor 将会改变 Header 和 Footer 的主题颜色-->
+        <!--srlEnablePreviewInEditMode 可以开启和关闭预览功能-->
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            >
-            <RelativeLayout
-                android:id="@+id/home_card_unbind"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/home_card_bindBtn_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:textSize="16sp"
-                    android:textColor="@color/txt_two"
-                    android:lineSpacingExtra="4dp"
-                    android:text="@string/campus_card_bind_title_2"
-                    android:layout_marginRight="18dp"
-                    android:layout_toLeftOf="@+id/home_card_bindBtn"
-                    android:layout_marginLeft="18dp"
-                    android:layout_alignParentLeft="true"/>
 
-                <Button
-                    android:id="@+id/home_card_bindBtn"
-                    android:layout_width="80dp"
-                    android:layout_height="36dp"
-                    android:background="@drawable/btn_getcode"
-                    android:textColor="@color/btn_text"
-                    android:textSize="18sp"
-                    android:text="@string/bind_card"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="18dp"/>
-            </RelativeLayout>
-            <LinearLayout
-                android:visibility="gone"
-                android:id="@+id/home_card_binded"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="100dp">
+
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:background="@color/btn_text"
-                android:layout_height="match_parent">
+                android:layout_height="90dp"
+                >
                 <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_margin="4dp"
-                    android:background="@drawable/bg_home_one"
+                    android:id="@+id/home_card_unbind"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/text_card_ID"
-                        android:layout_width="match_parent"
-                        android:gravity="center"
+                        android:id="@+id/home_card_bindBtn_tv"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:text="--"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="12dp"
-                        android:textColor="@color/txt_two"/>
+                        android:layout_centerVertical="true"
+                        android:textSize="16sp"
+                        android:textColor="@color/txt_two"
+                        android:lineSpacingExtra="4dp"
+                        android:text="@string/campus_card_bind_title_2"
+                        android:layout_marginRight="18dp"
+                        android:layout_toLeftOf="@+id/home_card_bindBtn"
+                        android:layout_marginLeft="18dp"
+                        android:layout_alignParentLeft="true"/>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="10dp"
-                        android:gravity="center"
-                        android:layout_centerHorizontal="true"
-                        android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/home_card_bindBtn"
+                        android:layout_width="80dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/btn_getcode"
+                        android:textColor="@color/btn_text"
+                        android:textSize="18sp"
+                        android:text="@string/bind_card"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="18dp"/>
+                </RelativeLayout>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/home_card_binded"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:background="@color/btn_text"
+                    android:layout_height="match_parent">
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/bg_home_one"
+                        android:layout_height="match_parent">
+
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/text_card_ID"
+                            android:layout_width="match_parent"
+                            android:gravity="center"
                             android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:text="卡号 "
+                            android:textSize="18sp"
+                            android:text="--"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="12dp"
                             android:textColor="@color/txt_two"/>
-                        <TextView
-                            android:id="@+id/text_card_statu"
-                            android:layout_width="wrap_content"
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="16sp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="center"
+                            android:layout_centerHorizontal="true"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:text="卡号 "
+                                android:textColor="@color/txt_two"/>
+                            <TextView
+                                android:id="@+id/text_card_statu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:text="--"
+                                android:textColor="@color/text_hint_miss"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_margin="4dp"
+                        android:background="@drawable/bg_home_one"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:id="@+id/text_card_monney"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="22sp"
+                            android:layout_marginTop="10dp"
                             android:text="--"
                             android:textColor="@color/text_hint_miss"/>
-                    </LinearLayout>
-
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_margin="4dp"
-                    android:background="@drawable/bg_home_one"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:id="@+id/text_card_monney"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textSize="22sp"
-                        android:layout_marginTop="10dp"
-                        android:text="--"
-                        android:textColor="@color/text_hint_miss"/>
-                    <TextView
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="10dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_width="match_parent"
-                        android:gravity="center"
-                        android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:text="卡余额(元)"
-                        android:textColor="@color/txt_three"/>
+                        <TextView
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="10dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="match_parent"
+                            android:gravity="center"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="卡余额(元)"
+                            android:textColor="@color/txt_three"/>
 
 
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_margin="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_home_one"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:layout_alignParentTop="true"
-                        android:layout_centerVertical="true"
-                        android:id="@+id/text_card_monney_remain"
-                        android:layout_width="match_parent"
-                        android:gravity="center"
-                        android:layout_height="wrap_content"
-                        android:textSize="22sp"
-                        android:layout_marginTop="10dp"
-                        android:text="--"
-                        android:textColor="@color/text_hint_miss"/>
-                    <TextView
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="10dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_width="match_parent"
-                        android:gravity="center"
-                        android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:text="未领金额(元)"
-                        android:textColor="@color/txt_three"/>
-                </RelativeLayout>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_margin="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_home_one"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_alignParentTop="true"
+                            android:layout_centerVertical="true"
+                            android:id="@+id/text_card_monney_remain"
+                            android:layout_width="match_parent"
+                            android:gravity="center"
+                            android:layout_height="wrap_content"
+                            android:textSize="22sp"
+                            android:layout_marginTop="10dp"
+                            android:text="--"
+                            android:textColor="@color/text_hint_miss"/>
+                        <TextView
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="10dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="match_parent"
+                            android:gravity="center"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:text="未领金额(元)"
+                            android:textColor="@color/txt_three"/>
+                    </RelativeLayout>
 
-            </LinearLayout>
-        </FrameLayout>
-    </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:id="@+id/line_rechange"
+            >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/white"
-        android:id="@+id/line_rechange"
-        >
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:id="@+id/rechange_iv"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="21dp"
+                android:src="@mipmap/card_rechage"
+                />
 
-        <ImageView
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:id="@+id/rechange_iv"
-            android:layout_centerVertical="true"
+            <TextView
+                android:layout_toRightOf="@+id/rechange_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="18dp"
+                android:textColor="@color/txt_one"
+                android:text="充值"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="17dp"
+                android:src="@mipmap/i_arrow_list_pre" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_marginLeft="21dp"
-            android:src="@mipmap/card_rechage"
-            />
+            android:background="@color/bg_view"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:id="@+id/line_loss"
+            >
 
-        <TextView
-            android:layout_toRightOf="@+id/rechange_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="18dp"
-            android:textColor="@color/txt_one"
-            android:text="充值"
-            android:textSize="18sp" />
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:id="@+id/loss_iv"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="21dp"
+                android:src="@mipmap/card_loss"
+                />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="17dp"
-            android:src="@mipmap/i_arrow_list_pre" />
-    </RelativeLayout>
+            <TextView
+                android:layout_toRightOf="@+id/loss_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="18dp"
+                android:textColor="@color/txt_one"
+                android:text="挂失/解挂"
+                android:textSize="18sp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="21dp"
-        android:background="@color/bg_view"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/white"
-        android:id="@+id/line_loss"
-        >
-
-        <ImageView
-           android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:id="@+id/loss_iv"
-            android:layout_centerVertical="true"
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="17dp"
+                android:src="@mipmap/i_arrow_list_pre" />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_marginLeft="21dp"
-            android:src="@mipmap/card_loss"
-            />
+            android:background="@color/bg_view"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:id="@+id/line_fill"
+            >
 
-        <TextView
-            android:layout_toRightOf="@+id/loss_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="18dp"
-            android:textColor="@color/txt_one"
-            android:text="挂失/解挂"
-            android:textSize="18sp" />
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:id="@+id/fill_iv"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="21dp"
+                android:src="@mipmap/card_fill"
+                />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="17dp"
-            android:src="@mipmap/i_arrow_list_pre" />
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-       android:layout_marginLeft="21dp"
-        android:background="@color/bg_view"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/white"
-        android:id="@+id/line_fill"
-        >
+            <TextView
+                android:layout_toRightOf="@+id/fill_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="18dp"
+                android:textColor="@color/txt_one"
+                android:text="补卡"
+                android:textSize="18sp" />
 
-        <ImageView
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:id="@+id/fill_iv"
-            android:layout_centerVertical="true"
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="17dp"
+                android:src="@mipmap/i_arrow_list_pre" />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_marginLeft="21dp"
-            android:src="@mipmap/card_fill"
-            />
+            android:background="@color/bg_view"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:id="@+id/line_apply"
+            >
 
-        <TextView
-            android:layout_toRightOf="@+id/fill_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="18dp"
-            android:textColor="@color/txt_one"
-            android:text="补卡"
-            android:textSize="18sp" />
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:id="@+id/apple_iv"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="21dp"
+                android:src="@mipmap/home_card_myself"
+                />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="17dp"
-            android:src="@mipmap/i_arrow_list_pre" />
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="21dp"
-        android:background="@color/bg_view"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/white"
-        android:id="@+id/line_apply"
-        >
+            <TextView
+                android:layout_toRightOf="@+id/apple_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="18dp"
+                android:textColor="@color/txt_one"
+                android:text="办卡"
+                android:textSize="18sp" />
 
-        <ImageView
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:id="@+id/apple_iv"
-            android:layout_centerVertical="true"
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="17dp"
+                android:src="@mipmap/i_arrow_list_pre" />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_marginLeft="21dp"
-            android:src="@mipmap/home_card_myself"
-            />
+            android:background="@color/bg_view"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:id="@+id/line_bill"
+            >
 
-        <TextView
-            android:layout_toRightOf="@+id/apple_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="18dp"
-            android:textColor="@color/txt_one"
-            android:text="办卡"
-            android:textSize="18sp" />
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:id="@+id/unbind_iv"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="21dp"
+                android:src="@mipmap/pass_setting"
+                />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="17dp"
-            android:src="@mipmap/i_arrow_list_pre" />
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="21dp"
-        android:background="@color/bg_view"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/white"
-        android:id="@+id/line_bill"
-        >
+            <TextView
+                android:layout_toRightOf="@+id/unbind_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="18dp"
+                android:textColor="@color/txt_one"
+                android:text="账单中心"
+                android:textSize="18sp" />
 
-        <ImageView
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:id="@+id/unbind_iv"
-            android:layout_centerVertical="true"
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="17dp"
+                android:src="@mipmap/i_arrow_list_pre" />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
             android:layout_marginLeft="21dp"
-            android:src="@mipmap/pass_setting"
-            />
+            android:background="@color/bg_view"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:id="@+id/line_pass"
+            >
 
-        <TextView
-            android:layout_toRightOf="@+id/unbind_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="18dp"
-            android:textColor="@color/txt_one"
-            android:text="账单中心"
-            android:textSize="18sp" />
+            <ImageView
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:id="@+id/pass_iv"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="21dp"
+                android:src="@mipmap/pass_setting"
+                />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="17dp"
-            android:src="@mipmap/i_arrow_list_pre" />
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="21dp"
-        android:background="@color/bg_view"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/white"
-        android:id="@+id/line_pass"
-        >
+            <TextView
+                android:layout_toRightOf="@+id/pass_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="18dp"
+                android:textColor="@color/txt_one"
+                android:text="重置交易密码"
+                android:textSize="18sp" />
 
-        <ImageView
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:id="@+id/pass_iv"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="21dp"
-            android:src="@mipmap/pass_setting"
-            />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="17dp"
+                android:src="@mipmap/i_arrow_list_pre" />
+        </RelativeLayout>
+        </LinearLayout>
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-        <TextView
-            android:layout_toRightOf="@+id/pass_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="18dp"
-            android:textColor="@color/txt_one"
-            android:text="重置交易密码"
-            android:textSize="18sp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="17dp"
-            android:src="@mipmap/i_arrow_list_pre" />
-    </RelativeLayout>
 
 
 </LinearLayout>

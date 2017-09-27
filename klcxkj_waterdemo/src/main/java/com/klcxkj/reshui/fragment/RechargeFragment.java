@@ -1,7 +1,9 @@
 package com.klcxkj.reshui.fragment;
 
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
 import com.klcxkj.klcxkj_waterdemo.R;
@@ -37,6 +39,7 @@ public class RechargeFragment extends BaseFragment {
     private List<RechargeRecording> mDatas =new ArrayList<>();//数据源
     private List<RechargeRecording> listDatas =new ArrayList<>();//分页加载的数据
     private RechargeRecrodingResult recrodingResult;  //解析实体类
+    private RelativeLayout layout_null;  //无数据视图
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_rechanger;
@@ -54,6 +57,7 @@ public class RechargeFragment extends BaseFragment {
 
 
     private void initview() {
+        layout_null = (RelativeLayout) mView.findViewById(R.id.data_null);
         rechargeListView = (ListView) mView.findViewById(R.id.listView_rechager);
         smartRefreshLayout = (SmartRefreshLayout) mView.findViewById(R.id.refreshLayout);
         rAdpater =new LRechargeRecrodingAdpater(getActivity());
@@ -67,6 +71,11 @@ public class RechargeFragment extends BaseFragment {
     private void initdata() {
         if (recrodingResult ==null){
             loadBillFromServer();
+        }else {
+            if (recrodingResult.getObj() ==null || recrodingResult.getObj().size()==0){
+                smartRefreshLayout.setVisibility(View.GONE);
+                layout_null.setVisibility(View.VISIBLE);
+            }
         }
 
 
@@ -158,6 +167,9 @@ public class RechargeFragment extends BaseFragment {
             }
             rAdpater.notifyDataSetChanged();
 
+        }else {
+            smartRefreshLayout.setVisibility(View.GONE);
+            layout_null.setVisibility(View.VISIBLE);
         }
     }
 

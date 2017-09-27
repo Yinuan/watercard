@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -135,7 +136,9 @@ public class ACT_CampusCardBind extends ACT_Network {
 	@Override
 	protected void handleErrorResponse(String url, VolleyError error) {
 		super.handleErrorResponse(url, error);
-		progress.dismiss();
+		if (progress!=null){
+			progress.dismiss();
+		}
 		mButtonBindNext.setEnabled(true);
 		if(error instanceof TimeoutError){
 			toast(R.string.timeout_error);
@@ -197,6 +200,7 @@ public class ACT_CampusCardBind extends ACT_Network {
 			if (progress!=null){
 				progress.dismiss();
 			}
+			mButtonBindNext.setEnabled(true);
 		}
 
 	}
@@ -218,6 +222,13 @@ public class ACT_CampusCardBind extends ACT_Network {
 		progress = GlobalTools.getInstance().showDailog(ACT_CampusCardBind.this,"查询卡片信息");
 	}
 
+	private int getWidth(){
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		int widthPixels = metrics.widthPixels;
+		int width =(widthPixels*3)/4;
+		return  width;
+	}
 	/**
 	 * 选择其他金额
 	 */
@@ -229,7 +240,7 @@ public class ACT_CampusCardBind extends ACT_Network {
 		Button btn_cancle = (Button) view.findViewById(R.id.pop_4_cancle);
 		TextView tv = (TextView) view.findViewById(R.id.pop_4_title);
 		tv.setText("提示:请输入6位数交易密码");
-		final PopupWindow popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT,
+		final PopupWindow popupWindow = new PopupWindow(view, getWidth(),
 				ViewGroup.LayoutParams.WRAP_CONTENT);
 		ColorDrawable cd = new ColorDrawable(0x000000);
 		popupWindow.setBackgroundDrawable(cd);

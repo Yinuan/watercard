@@ -10,6 +10,7 @@ import android.text.InputFilter;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -286,7 +287,13 @@ private void submitDataToserver(String pass){
 
 		}
 	}
-
+	private int getWidth(){
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		int widthPixels = metrics.widthPixels;
+		int width =(widthPixels*3)/4;
+		return  width;
+	}
 
 	private void showPop() {
 		View view = LayoutInflater.from(ACT_CampusCardApply.this).inflate(R.layout.pop_style_2, null);
@@ -299,7 +306,7 @@ private void submitDataToserver(String pass){
 		btn_ok.setText("去绑卡");
 		btn_cacle.setText("立即办卡");
 
-		final PopupWindow popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT,
+		final PopupWindow popupWindow = new PopupWindow(view, getWidth(),
 				ViewGroup.LayoutParams.WRAP_CONTENT);
 		ColorDrawable cd = new ColorDrawable(0x000000);
 		popupWindow.setBackgroundDrawable(cd);
@@ -371,7 +378,7 @@ private void submitDataToserver(String pass){
 		Button btn = (Button) view.findViewById(R.id.pop_3_btn);
 		title.setGravity(Gravity.CENTER_HORIZONTAL);
 		title.setText("\u3000"+"请前往自助领卡机领卡");
-		final PopupWindow popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT,
+		final PopupWindow popupWindow = new PopupWindow(view, getWidth(),
 				ViewGroup.LayoutParams.WRAP_CONTENT);
 		ColorDrawable cd = new ColorDrawable(0x000000);
 		popupWindow.setBackgroundDrawable(cd);
@@ -437,7 +444,7 @@ private void submitDataToserver(String pass){
 		Button btn_cancle = (Button) view.findViewById(R.id.pop_4_cancle);
 		TextView tv = (TextView) view.findViewById(R.id.pop_4_title);
 		tv.setText("提示:请输入6位数交易密码");
-		final PopupWindow popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT,
+		final PopupWindow popupWindow = new PopupWindow(view, getWidth(),
 				ViewGroup.LayoutParams.WRAP_CONTENT);
 		ColorDrawable cd = new ColorDrawable(0x000000);
 		popupWindow.setBackgroundDrawable(cd);

@@ -1,6 +1,7 @@
 package com.klcxkj.reshui.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,7 @@ public class ACT_PassSetting extends ACT_Network {
         private Button btn;
     private String AlterPass = StringConfig.BASE_URL+"tStudent/forgetLogInPwd?"; //密码
     private UserInfo mUserInfo;
+    private String passWaord;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,12 +63,15 @@ public class ACT_PassSetting extends ACT_Network {
                             btn.setEnabled(false);
                         }
                     }*/
-                  if (pass2.getText().toString().length()!=6){
-                      toast("密码为6位数");
+                  passWaord =pass2.getText().toString();
+                  if (passWaord.length()!=6){
+                      toast("请设置密码为6位数字");
+                     return;
+                  }else {
                       //设置密码
                       HashMap<String,String> map =new HashMap<String, String>();
                       map.put("telPhone",mUserInfo.getTelPhone());
-                      map.put("LogPwd",pass2.getText().toString());
+                      map.put("LogPwd",passWaord);
                       sendPostRequest(AlterPass,map);
                       btn.setEnabled(false);
                   }
@@ -88,10 +93,13 @@ public class ACT_PassSetting extends ACT_Network {
     @Override
     protected void handleResponse(String url, JSONObject json) {
         super.handleResponse(url, json);
+        Log.d("ACT_PassSetting", "json:" + json);
         Gson gson =new Gson();
         BaseBo baseBo =gson.fromJson(json.toString(),BaseBo.class);
         if (baseBo.isSuccess()){
             toast(baseBo.getMsg());
+            //保存尼玛
+            AppPreference.getInstance().savePassWord(passWaord);
             finish();
         }else {
             toast(baseBo.getMsg());

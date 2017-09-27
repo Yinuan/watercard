@@ -1,7 +1,9 @@
 package com.klcxkj.reshui.fragment;
 
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
 import com.klcxkj.klcxkj_waterdemo.R;
@@ -40,6 +42,8 @@ public class TransferFragment extends BaseFragment {
     private RechargeRecrodingResult recrodingResult;  //解析实体类
     private ListView transferListview;
     private LoadingDialogProgress progress;
+    private RelativeLayout layout_null;  //无数据视图
+
     @Override
     protected int getLayoutId() {
         return R.layout.act_campus_card_bill;
@@ -56,6 +60,7 @@ public class TransferFragment extends BaseFragment {
 
 
     private void initview() {
+        layout_null = (RelativeLayout) mView.findViewById(R.id.data_null);
         transferListview = (ListView) mView.findViewById(R.id.listView_transfer);
         smartRefreshLayout = (SmartRefreshLayout) mView.findViewById(R.id.refreshLayout);
         rAdpater =new LRechargeRecrodingAdpater(getActivity());
@@ -68,6 +73,11 @@ public class TransferFragment extends BaseFragment {
         if (recrodingResult ==null){
             progress= GlobalTools.getInstance().showDailog(getActivity(),"加载");
             loadBillFromServer();
+        }else {
+            if (recrodingResult.getObj() ==null || recrodingResult.getObj().size()==0){
+                smartRefreshLayout.setVisibility(View.GONE);
+                layout_null.setVisibility(View.VISIBLE);
+            }
         }
 
 
@@ -169,6 +179,9 @@ public class TransferFragment extends BaseFragment {
             }
             rAdpater.notifyDataSetChanged();
 
+        }else {
+            smartRefreshLayout.setVisibility(View.GONE);
+            layout_null.setVisibility(View.VISIBLE);
         }
 
     }

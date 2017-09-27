@@ -1,7 +1,9 @@
 package com.klcxkj.reshui.fragment;
 
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
 import com.klcxkj.klcxkj_waterdemo.R;
@@ -44,6 +46,8 @@ public class ConsumptionFragment extends BaseFragment {
     private RechargeRecrodingResult recrodingResult;  //解析实体类
     private LoadingDialogProgress progress;
 
+    private RelativeLayout layout_null;  //无数据视图
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_consum;
@@ -63,7 +67,7 @@ public class ConsumptionFragment extends BaseFragment {
     private void initview() {
         consumListView = (ListView) mView.findViewById(R.id.listView_consum);
         smartRefreshLayout = (SmartRefreshLayout) mView.findViewById(R.id.refreshLayout);
-
+        layout_null = (RelativeLayout) mView.findViewById(R.id.data_null);
         rAdpater =new LRechargeRecrodingAdpater(getActivity());
         rAdpater.setList(listDatas);
         consumListView.setAdapter(rAdpater);
@@ -74,6 +78,11 @@ public class ConsumptionFragment extends BaseFragment {
         if (recrodingResult ==null){
             progress = GlobalTools.getInstance().showDailog(getActivity(),"加载");
             loadBillFromServer();
+        }else {
+            if (recrodingResult.getObj() ==null || recrodingResult.getObj().size()==0){
+                smartRefreshLayout.setVisibility(View.GONE);
+                layout_null.setVisibility(View.VISIBLE);
+            }
         }
 
 
@@ -162,6 +171,9 @@ public class ConsumptionFragment extends BaseFragment {
             rAdpater =new LRechargeRecrodingAdpater(getActivity());
             rAdpater.setList(listDatas);
             consumListView.setAdapter(rAdpater);
+        }{
+            smartRefreshLayout.setVisibility(View.GONE);
+            layout_null.setVisibility(View.VISIBLE);
         }
 
     }

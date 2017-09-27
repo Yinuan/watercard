@@ -163,7 +163,7 @@ public class ACT_Rechage extends ACT_Network{
 				params.put("EmployeeID", mCardInfo.getEmployeeID()+"");
 				params.put("CardID", mCardInfo.getCardID()+"");
 				//monneyValue
-				params.put("totalFee", "0.01");
+				params.put("totalFee", edit_money);
 				params.put("ServerIP", userInfo.getServerIP());
 				params.put("ServerPort", userInfo.getServerPort()+"");
 				sendPostRequest(urlGetAlipayInfor, params);

@@ -3,6 +3,7 @@ package com.klcxkj.reshui.activity;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -148,7 +149,13 @@ public class ACT_FillCard extends ACT_Network {
 		}
 		finish();
 	}
-
+	private int getWidth(){
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		int widthPixels = metrics.widthPixels;
+		int width =(widthPixels*3)/4;
+		return  width;
+	}
 	private void showPopOut() {
 		View view1 = LayoutInflater.from(ACT_FillCard.this).inflate(R.layout.pop_style_2, null);
 		TextView title = (TextView) view1.findViewById(R.id.pop_title);
@@ -160,7 +167,7 @@ public class ACT_FillCard extends ACT_Network {
 		btn_ok.setText("确定");
 		btn_cacle.setText("取消");
 
-		final PopupWindow popupWindow = new PopupWindow(view1, ViewGroup.LayoutParams.WRAP_CONTENT,
+		final PopupWindow popupWindow = new PopupWindow(view1, getWidth(),
 				ViewGroup.LayoutParams.WRAP_CONTENT);
 		ColorDrawable cd = new ColorDrawable(0x000000);
 		popupWindow.setBackgroundDrawable(cd);

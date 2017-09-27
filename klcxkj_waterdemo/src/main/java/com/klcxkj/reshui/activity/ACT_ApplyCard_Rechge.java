@@ -71,7 +71,7 @@ public class ACT_ApplyCard_Rechge extends ACT_Network {
                 params.put("EmployeeName",mCardInfo.getEmployeeName());
                 params.put("EmployeeID", mCardInfo.getEmployeeID()+"");
                 params.put("CardID", mCardInfo.getCardID()+"");
-                params.put("totalFee", "0.01");
+                params.put("totalFee", perMonney);
                 params.put("ServerIP", userInfo.getServerIP());
                 params.put("ServerPort", userInfo.getServerPort()+"");
                 sendPostRequest(urlGetAlipayInfor, params);
@@ -146,7 +146,7 @@ public class ACT_ApplyCard_Rechge extends ACT_Network {
                     // 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
                     if (TextUtils.equals(resultStatus, "9000")) {
                         Intent intent = new Intent(getApplicationContext(), ACT_CampusCardApplyRechageReport.class);
-                        intent.putExtra("money", "0.01");
+                        intent.putExtra("money", perMonney);
                         intent.putExtra("rechageType","cardGet");
                         startActivity(intent);
                         toast("充值成功");

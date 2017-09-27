@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -161,7 +162,13 @@ public class ACT_CampusCardLoss extends ACT_Network {
 	}
 
 
-
+	private int getWidth(){
+		DisplayMetrics metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		int widthPixels = metrics.widthPixels;
+		int width =(widthPixels*3)/4;
+		return  width;
+	}
 	/**
 	 * 选择其他金额
 	 */
@@ -172,8 +179,8 @@ public class ACT_CampusCardLoss extends ACT_Network {
 		Button btn_ok = (Button) view.findViewById(R.id.pop_4_confrim);
 		Button btn_cancle = (Button) view.findViewById(R.id.pop_4_cancle);
 		TextView title = (TextView) view.findViewById(R.id.pop_4_title);
-		title.setText("提示");
-		final PopupWindow popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT,
+		title.setText("提示:请输入6位数交易密码");
+		final PopupWindow popupWindow = new PopupWindow(view, getWidth(),
 				ViewGroup.LayoutParams.WRAP_CONTENT);
 		ColorDrawable cd = new ColorDrawable(0x000000);
 		popupWindow.setBackgroundDrawable(cd);
@@ -216,27 +223,32 @@ public class ACT_CampusCardLoss extends ACT_Network {
 				String pa =AppPreference.getInstance().getPassWord();
 				String doingName ="";
 				Log.d("ACT_CampusCardLoss","password:"+ pa);
-				if (!TextUtils.isEmpty(password) && password.equals(pa)) {
-					HashMap<String,String> map =new HashMap<String, String>();
-					map.put("PrjID",userInfo.getPrjID()+"");
-					map.put("EmployeeID",userInfo.getEmployeeID()+"");
-					if (mCardInfo.getNCardStatusID()==1) {
-						map.put("intStatus",0+"");
-						doingName ="解挂中";
-					}else if (mCardInfo.getNCardStatusID()==0) {
-						map.put("intStatus",1+"");
-						doingName ="挂史中";
+				if (!TextUtils.isEmpty(password) && password.length() ==6) {
+					if (pa !=null && pa.equals(password)){
+						HashMap<String,String> map =new HashMap<String, String>();
+						map.put("PrjID",userInfo.getPrjID()+"");
+						map.put("EmployeeID",userInfo.getEmployeeID()+"");
+						if (mCardInfo.getNCardStatusID()==1) {
+							map.put("intStatus",0+"");
+							doingName ="解挂中";
+						}else if (mCardInfo.getNCardStatusID()==0) {
+							map.put("intStatus",1+"");
+							doingName ="挂失中";
+						}
+						map.put("ServerIP",userInfo.getServerIP());
+						map.put("ServerPort",userInfo.getServerPort()+"");
+						sendPostRequest(url,map);
+						progress = GlobalTools.getInstance().showDailog(ACT_CampusCardLoss.this,doingName);
+						mButtonSubmit.setEnabled(false);
+
+					}else {
+						toast("操作失败，请重置交易密码");
 					}
-					map.put("ServerIP",userInfo.getServerIP());
-					map.put("ServerPort",userInfo.getServerPort()+"");
-					sendPostRequest(url,map);
-					progress = GlobalTools.getInstance().showDailog(ACT_CampusCardLoss.this,doingName);
-					mButtonSubmit.setEnabled(false);
 					popupWindow.dismiss();
 				} else {
 //							DialogUtil.dismissAlertDialog();
 //							PopupWindowUtil.showPopupWindow(ACT_CampusCardLoss.this, ACT_CampusCardLoss.this.findViewById(R.id.layout_navbar));
-					toast("密码错误，请重新输入");
+					toast("请正确输入交易密码");
 				}
 			}
 		});

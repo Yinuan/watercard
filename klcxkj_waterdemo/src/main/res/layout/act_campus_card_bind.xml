@@ -8,6 +8,7 @@
     android:orientation="vertical" >
 
 <include layout="@layout/top_title_style"></include>
+
     <LinearLayout
         android:id="@+id/layout_content"
         android:layout_width="match_parent"

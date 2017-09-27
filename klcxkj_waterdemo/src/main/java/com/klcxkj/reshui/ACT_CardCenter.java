@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -25,7 +26,6 @@ import com.klcxkj.reshui.activity.ACT_BillActivity;
 import com.klcxkj.reshui.activity.ACT_CampusCardApply;
 import com.klcxkj.reshui.activity.ACT_CampusCardBind;
 import com.klcxkj.reshui.activity.ACT_CampusCardLoss;
-import com.klcxkj.reshui.activity.ACT_FillCard;
 import com.klcxkj.reshui.activity.ACT_Network;
 import com.klcxkj.reshui.activity.ACT_PassSetting;
 import com.klcxkj.reshui.activity.ACT_Rechage;
@@ -38,6 +38,9 @@ import com.klcxkj.reshui.tools.StringConfig;
 import com.klcxkj.reshui.util.AppPreference;
 import com.klcxkj.reshui.util.GlobalTools;
 import com.klcxkj.reshui.widget.LoadingDialogProgress;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -71,6 +74,7 @@ public class ACT_CardCenter extends ACT_Network implements View.OnClickListener{
     private TextView cardRemain;  //未领金额
     private LoadingDialogProgress progress;
     private  TextView right;
+    private SmartRefreshLayout smartRefreshLayout;
 
     /**
      * 卡片未绑定  --》 绑卡/申卡
@@ -86,7 +90,7 @@ public class ACT_CardCenter extends ACT_Network implements View.OnClickListener{
         right.setText("解除绑定");
         right.setVisibility(View.GONE);
 
-        title.setText("卡片中心");
+        title.setText("卡片管理");
         LinearLayout backBtn = (LinearLayout) findViewById(R.id.top_btn_back);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,8 +101,11 @@ public class ACT_CardCenter extends ACT_Network implements View.OnClickListener{
          initView();
 
         initData(); //登陆
+        bindview();
         EventBus.getDefault().register(this);
     }
+
+
 
     private void registerPhone(){
         HashMap<String,String> map =new HashMap<>();
@@ -172,6 +179,7 @@ public class ACT_CardCenter extends ACT_Network implements View.OnClickListener{
     }
 
     private void initView() {
+        smartRefreshLayout = (SmartRefreshLayout) findViewById(R.id.refreshLayout);
 
         cardUnBind = (RelativeLayout) findViewById(R.id.home_card_unbind);
         cardBind = (LinearLayout) findViewById(R.id.home_card_binded);
@@ -197,7 +205,16 @@ public class ACT_CardCenter extends ACT_Network implements View.OnClickListener{
         passLine.setOnClickListener(this);
     }
 
-
+    private void bindview() {
+        smartRefreshLayout.setEnableLoadmore(false);
+        smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                refreshlayout.finishRefresh(2000);
+                loadCardDatasforServer();
+            }
+        });
+    }
     private void initData() {
         Intent intent =getIntent();
         tellPhone =intent.getStringExtra("tellPhoneNum");
@@ -230,7 +247,7 @@ public class ACT_CardCenter extends ACT_Network implements View.OnClickListener{
         map.put("ServerIP",userInfo.getServerIP());
         map.put("ServerPort",userInfo.getServerPort()+"");
         sendPostRequest(queryCardInfo,map);
-        progress = GlobalTools.getInstance().showDailog(ACT_CardCenter.this,"查询卡片信息");
+
     }
     @Override
     protected void handleErrorResponse(String url, VolleyError error) {
@@ -277,6 +294,7 @@ public class ACT_CardCenter extends ACT_Network implements View.OnClickListener{
                         cardBind.setVisibility(View.VISIBLE);
                         cardUnBind.setVisibility(View.GONE);
                         right.setVisibility(View.VISIBLE);
+                        progress = GlobalTools.getInstance().showDailog(ACT_CardCenter.this,"查询卡片信息");
                         loadCardDatasforServer();
                         showView();
 
@@ -365,6 +383,30 @@ public class ACT_CardCenter extends ACT_Network implements View.OnClickListener{
         cardRemain.setText(cardInfo.getAccountMoney()+"");
     }
 
+    private String getcardStats(){
+        if (cardInfo ==null){
+            return "未知";
+        }
+        String status ="";
+        switch (cardInfo.getNCardStatusID()){
+            case 0:
+                status ="正常";
+                break;
+            case 1:
+                status ="挂失";
+                break;
+            case 2:
+                status ="退卡";
+                break;
+            case 3:
+                status ="未领卡";
+                break;
+            case 4:
+                status ="销户";
+                break;
+        }
+        return status;
+    }
     @Override
     public void onClick(View view) {
         int i = view.getId();
@@ -384,7 +426,12 @@ public class ACT_CardCenter extends ACT_Network implements View.OnClickListener{
                 toast("请先申请或绑定卡片");
                 return;
             }
-            startActivity(new Intent(ACT_CardCenter.this, ACT_Rechage.class));
+            if (cardInfo.getNCardStatusID() ==0 || cardInfo.getNCardStatusID() ==3){
+                startActivity(new Intent(ACT_CardCenter.this, ACT_Rechage.class));
+            }else {
+                toast("您的卡片状态是:"+getcardStats()+",不能充值");
+            }
+
 
         } else if (i == R.id.line_loss) {
             if (!CardIsBinded()) {
@@ -394,7 +441,8 @@ public class ACT_CardCenter extends ACT_Network implements View.OnClickListener{
                 if (cardInfo.getNCardStatusID()==1 || cardInfo.getNCardStatusID()==0){
                     startActivity(new Intent(ACT_CardCenter.this, ACT_CampusCardLoss.class));
                 }else {
-                    toast("卡片状态正常");
+
+                    toast("您的卡片状态是:"+getcardStats()+",不能挂失");
                 }
             }
 
@@ -407,13 +455,14 @@ public class ACT_CardCenter extends ACT_Network implements View.OnClickListener{
             if (cardInfo.getNCardStatusID() ==1){ //挂失
                 int msg = userInfo.getHasChargeDev();
                 if (msg==1){
-                    startActivity(new Intent(ACT_CardCenter.this, ACT_FillCard.class));
+                  //  startActivity(new Intent(ACT_CardCenter.this, ACT_FillCard.class));
+                    showPop2();
                 }else {
                    // toast("自助办卡功能暂未开通，请到管理中心去办理");
                     showPop2();
                 }
             }else {
-                toast("挂失状态下才可补卡");
+                toast("您的卡片状态是:"+getcardStats()+",不能补卡");
             }
 
 
@@ -448,7 +497,13 @@ public class ACT_CardCenter extends ACT_Network implements View.OnClickListener{
         }
 
     }
-
+    private int getWidth(){
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int widthPixels = metrics.widthPixels;
+        int width =(widthPixels*3)/4;
+        return  width;
+    }
 
     private void showPop() {
         View view1 = LayoutInflater.from(ACT_CardCenter.this).inflate(R.layout.pop_style_2b, null);
@@ -461,7 +516,7 @@ public class ACT_CardCenter extends ACT_Network implements View.OnClickListener{
         btn_ok.setText("解除绑定");
         btn_cacle.setText("再看看先");
 
-        final PopupWindow popupWindow = new PopupWindow(view1, ViewGroup.LayoutParams.WRAP_CONTENT,
+        final PopupWindow popupWindow = new PopupWindow(view1, getWidth(),
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         ColorDrawable cd = new ColorDrawable(0x000000);
         popupWindow.setBackgroundDrawable(cd);
