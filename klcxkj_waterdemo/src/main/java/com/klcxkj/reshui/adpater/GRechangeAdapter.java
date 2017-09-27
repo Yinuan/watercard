@@ -39,7 +39,7 @@ public class GRechangeAdapter extends MyAdapter<RechangeValue> {
             btn.setTextColor(mContext.getResources().getColor(R.color.txt_two));
         }else {
             btn.setBackgroundResource(R.drawable.btn_rechange_style);
-            btn.setTextColor(mContext.getResources().getColor(R.color.text_hint_miss));
+            btn.setTextColor(mContext.getResources().getColor(R.color.white));
         }
         return view;
     }

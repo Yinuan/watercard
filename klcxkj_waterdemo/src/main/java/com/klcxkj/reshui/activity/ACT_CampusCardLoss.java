@@ -75,9 +75,9 @@ public class ACT_CampusCardLoss extends ACT_Network {
 		mCardInfo = AppPreference.getInstance().getCardInfo();
 		userInfo =AppPreference.getInstance().getUserInfo();
 		if (mCardInfo!=null){
-			mEditCardID.setText(mCardInfo.getCardID());
+			mEditCardID.setText(mCardInfo.getCardID()+"");
 			mEditCardName.setText(mCardInfo.getEmployeeName());
-			int statusId = Integer.valueOf(mCardInfo.getnCardStatusID());
+			int statusId = mCardInfo.getNCardStatusID();
 			String statusName ="";
 			switch (statusId){
 				case 0://正常
@@ -141,19 +141,20 @@ public class ACT_CampusCardLoss extends ACT_Network {
 		BaseBo baseBo =gson.fromJson(json.toString(),BaseBo.class);
 		if (baseBo.isSuccess()){
 			cardIn =gson.fromJson(json.toString(),CardInfo.class);
-			if (cardIn.getnCardStatusID().equals("1")){//挂失状态
+			if (cardIn.getNCardStatusID()==1){//挂失状态
 
 				toast("挂失成功");
-				mCardInfo.setnCardStatusID("1");
+				mCardInfo.setNCardStatusID(1);
 				showMenu("解挂");
 				mEditCardStatus.setText("挂失");
 			}else {	//正常
-				mCardInfo.setnCardStatusID("0");
+				mCardInfo.setNCardStatusID(0);
 				mEditCardStatus.setText("正常");
 				toast("解挂成功");
 				showMenu("挂失");
 			}
 			AppPreference.getInstance().saveCardInfos(mCardInfo);
+			finish();
 		}else {
 			toast(baseBo.getMsg());
 		}
@@ -219,10 +220,10 @@ public class ACT_CampusCardLoss extends ACT_Network {
 					HashMap<String,String> map =new HashMap<String, String>();
 					map.put("PrjID",userInfo.getPrjID()+"");
 					map.put("EmployeeID",userInfo.getEmployeeID()+"");
-					if (mCardInfo.getnCardStatusID().equals("1")) {
+					if (mCardInfo.getNCardStatusID()==1) {
 						map.put("intStatus",0+"");
 						doingName ="解挂中";
-					}else if (mCardInfo.getnCardStatusID().equals("0")) {
+					}else if (mCardInfo.getNCardStatusID()==0) {
 						map.put("intStatus",1+"");
 						doingName ="挂史中";
 					}

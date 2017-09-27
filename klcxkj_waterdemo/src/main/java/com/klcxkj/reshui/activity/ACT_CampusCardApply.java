@@ -1,9 +1,11 @@
 package com.klcxkj.reshui.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.InputFilter;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -15,6 +17,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -26,14 +30,18 @@ import android.widget.TextView;
 
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
+import com.google.gson.Gson;
 import com.klcxkj.klcxkj_waterdemo.R;
+import com.klcxkj.reshui.entry.ApplyCard;
 import com.klcxkj.reshui.entry.Ban;
+import com.klcxkj.reshui.entry.BaseBo;
 import com.klcxkj.reshui.entry.BuildingAndRoomName;
 import com.klcxkj.reshui.entry.Room;
 import com.klcxkj.reshui.entry.UserInfo;
 import com.klcxkj.reshui.tools.StringConfig;
 import com.klcxkj.reshui.util.AppPreference;
 import com.klcxkj.reshui.util.GlobalTools;
+import com.klcxkj.reshui.widget.LoadingDialogProgress;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -50,7 +58,8 @@ import java.util.HashMap;
  * Description:自助申卡
  */
 public class ACT_CampusCardApply extends ACT_Network implements View.OnClickListener {
-	private String url = StringConfig.BASE_URL + "tStudent/studentAutoMakeCard?";
+	private String applyCard = StringConfig.BASE_URL + "tStudent/studentAutoMakeCard?";
+	private String AlterPass = StringConfig.BASE_URL+"tStudent/forgetLogInPwd?"; //密码
 	private LinearLayout layout_all;//布局parent
 	private EditText mEditName;//name
 	private RadioGroup sex;
@@ -65,7 +74,7 @@ public class ACT_CampusCardApply extends ACT_Network implements View.OnClickList
 	private Room aRoom;
 	private Ban aBuild;
 
-
+	private LoadingDialogProgress progress;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -162,9 +171,9 @@ public class ACT_CampusCardApply extends ACT_Network implements View.OnClickList
 
 	}
 
-private void submitDataToserver(){
+private void submitDataToserver(String pass){
 	progress = GlobalTools.getInstance().showDailog(ACT_CampusCardApply.this,"提交..");
-	String pass = AppPreference.getInstance().getPassWord();
+	//String pass = AppPreference.getInstance().getPassWord();
 	userInfo =AppPreference.getInstance().getUserInfo();
 	Log.d("ACT_CampusCardApply", "passssss:"+pass);
 	Log.d("ACT_CampusCardApply", "sexxxxx:"+sexNumber);
@@ -180,7 +189,7 @@ private void submitDataToserver(){
 	params.put("ServerIP", userInfo.getServerIP());
 	params.put("ServerPort", userInfo.getServerPort()+"");
 	Log.d("ACT_CampusCardApply", "params:" + params);
-	sendPostRequest(url, params);
+	sendPostRequest(applyCard, params);
 }
 
 
@@ -201,10 +210,33 @@ private void submitDataToserver(){
 		super.handleResponse(url, json);
 		progress.dismiss();
 		Log.d("ACT_CampusCardApply", "json:" + json);
-		showPop2();
+		Gson gson =new Gson();
+		BaseBo baseBo =gson.fromJson(json.toString(),BaseBo.class);
+		if (url.contains(applyCard)){
+			if (baseBo.isSuccess()){
+				ApplyCard card =gson.fromJson(json.toString(),ApplyCard.class);
+				toast(card.getMsg());
+				//更新用户资料
+				UserInfo userInfo =AppPreference.getInstance().getUserInfo();
+				userInfo.setEmployeeID(card.getEmployeeID());
+				AppPreference.getInstance().saveLoginUser(userInfo);
+				Log.d("ACT_CampusCardApply", "applyCardIsSucess");
+				EventBus.getDefault().postSticky("applyCardIsSucess");
+				AppPreference.getInstance().savePassWord(pass);
+				showPop2();
+			}else {
+				toast(baseBo.getMsg());
+			}
+		}else if (url.contains(AlterPass)){
+			toast(baseBo.getMsg());
+			//
+
+			finish();
+
+		}
+
+
 	}
-
-
 
 
 	@Override
@@ -249,7 +281,8 @@ private void submitDataToserver(){
 				toast("请选择房间");
 				return;
 			}
-			submitDataToserver();
+			showpop3();
+
 
 		}
 	}
@@ -392,4 +425,97 @@ private void submitDataToserver(){
 			}
 		});
 	}
+
+	/**
+	 * 选择其他金额
+	 */
+	private String pass;
+	private void showpop3() {
+		View view = LayoutInflater.from(ACT_CampusCardApply.this).inflate(R.layout.pop_style_4, null);
+		final AutoCompleteTextView value = (AutoCompleteTextView) view.findViewById(R.id.pop_4_value);
+		Button btn_ok = (Button) view.findViewById(R.id.pop_4_confrim);
+		Button btn_cancle = (Button) view.findViewById(R.id.pop_4_cancle);
+		TextView tv = (TextView) view.findViewById(R.id.pop_4_title);
+		tv.setText("提示:请输入6位数交易密码");
+		final PopupWindow popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT,
+				ViewGroup.LayoutParams.WRAP_CONTENT);
+		ColorDrawable cd = new ColorDrawable(0x000000);
+		popupWindow.setBackgroundDrawable(cd);
+		WindowManager.LayoutParams lp=getWindow().getAttributes();
+		lp.alpha = 0.4f;
+		getWindow().setAttributes(lp);
+		//注意  要是点击外部空白处弹框消息  那么必须给弹框设置一个背景色  不然是不起作用的
+		// 设置允许在外点击消失
+		popupWindow.setOutsideTouchable(false);
+		popupWindow.setBackgroundDrawable(new BitmapDrawable());
+		//点击外部消失
+		//  popupWindow.setOutsideTouchable(true);
+		//设置可以点击
+		popupWindow.setFocusable(true);
+		// 设置背景，这个是为了点击“返回Back”也能使其消失，并且并不会影响你的背景
+		popupWindow.setBackgroundDrawable(new BitmapDrawable());
+		// 软键盘不会挡着popupwindow
+		popupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+		popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				final InputMethodManager imm = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.toggleSoftInput(1000, InputMethodManager.HIDE_NOT_ALWAYS);
+			}
+		},50);
+		//popupWindow.showAsDropDown(mSubmit);
+		btn_cancle.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				popupWindow.dismiss();
+				//参数：1，自己的EditText。2，时间。
+			}
+		});
+		btn_ok.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				pass =value.getText().toString();
+				if (pass.length()!=6){
+					toast("请设置6位密码数字");
+					return;
+				}
+				popupWindow.dismiss();
+				//设置密码
+				submitDataToserver( pass);
+				/*HashMap<String,String> map =new HashMap<String, String>();
+				map.put("telPhone",userInfo.getTelPhone());
+				map.put("LogPwd",pass);
+				sendPostRequest(AlterPass,map);*/
+
+			}
+		});
+		// 监听菜单的关闭事件
+		popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+			@Override
+			public void onDismiss() {
+			}
+		});
+		// 监听触屏事件
+		popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+			public boolean onTouch(View view, MotionEvent event) {
+				return false;
+			}
+		});
+		popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+			//在dismiss中恢复透明度
+			public void onDismiss() {
+				WindowManager.LayoutParams lp = getWindow().getAttributes();
+				lp.alpha = 1f;
+				getWindow().setAttributes(lp);
+			}
+		});
+
+		//设置软件盘不挡
+		popupWindow.setSoftInputMode(PopupWindow.INPUT_METHOD_NEEDED);
+		popupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
+	}
+
 }

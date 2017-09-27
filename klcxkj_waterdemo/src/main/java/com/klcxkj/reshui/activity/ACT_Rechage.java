@@ -96,10 +96,10 @@ public class ACT_Rechage extends ACT_Network{
 		mCardInfo = AppPreference.getInstance().getCardInfo();
 		userInfo =AppPreference.getInstance().getUserInfo();
 		if (mCardInfo!=null){
-			prefillMoney.setText(mCardInfo.getPrefillMoney());
-			edit_cardID.setText(mCardInfo.getCardID());
+			prefillMoney.setText(mCardInfo.getAccountMoney()+"");
+			edit_cardID.setText(mCardInfo.getCardID()+"");
 			edit_user_name.setText(mCardInfo.getEmployeeName());
-			edit_user_balance.setText(getAmount(mCardInfo.getnCardValue()));  //卡余额
+			edit_user_balance.setText(getAmount(mCardInfo.getNCardValue()+""));  //卡余额
 		}
 
 	}
@@ -160,8 +160,8 @@ public class ACT_Rechage extends ACT_Network{
 				HashMap<String, String> params = new HashMap<String, String>();
 				params.put("PrjID", userInfo.getPrjID()+"");
 				params.put("EmployeeName",mCardInfo.getEmployeeName());
-				params.put("EmployeeID", mCardInfo.getEmployeeID());
-				params.put("CardID", mCardInfo.getCardID());
+				params.put("EmployeeID", mCardInfo.getEmployeeID()+"");
+				params.put("CardID", mCardInfo.getCardID()+"");
 				//monneyValue
 				params.put("totalFee", "0.01");
 				params.put("ServerIP", userInfo.getServerIP());
@@ -229,7 +229,7 @@ public class ACT_Rechage extends ACT_Network{
 				urlReturnUrlApp = mOrderInfo.getReturn_url();
 				pay();
 			}else if (url.contains(urlReturnUrlApp)){
-				toast(result.getMsg());
+				//toast(result.getMsg());
 			}
 		}else{
 			try {
@@ -258,9 +258,9 @@ public class ACT_Rechage extends ACT_Network{
 				if (TextUtils.equals(resultStatus, "9000")) {
 					Intent intent = new Intent(getApplicationContext(), ACT_CampusCardApplyRechageReport.class);
 					intent.putExtra("money", edit_money);
+					intent.putExtra("rechageType","cardMonney");
 					startActivity(intent);
-					toast("充值成功");
-					ACT_Rechage.this.finish();
+					finish();
 				} else {
 					// 判断resultStatus 为非“9000”则代表可能支付失败
 					// “8000”代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）

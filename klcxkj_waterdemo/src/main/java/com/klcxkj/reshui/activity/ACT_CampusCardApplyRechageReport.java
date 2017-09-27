@@ -27,16 +27,16 @@ public class ACT_CampusCardApplyRechageReport extends ACT_Network {
 		CardInfo mCardInfo = AppPreference.getInstance().getCardInfo();
 		String sAgeFormat;
 		if (TextUtils.isEmpty(getIntent().getStringExtra("money"))) {
-			sAgeFormat = getResources().getString(R.string.campus_card_rechage_success, mCardInfo.getPrefillMoney());    
+			sAgeFormat = getResources().getString(R.string.campus_card_rechage_success, mCardInfo.getPrefillMoney()+"");
 		} else {
-			if ("0".equals(mCardInfo.getnCardStatusID())) {
+			if (mCardInfo.getPrefillMoney() ==0) {
 				sAgeFormat = getResources().getString(R.string.campus_card_rechage_success2, getIntent().getStringExtra("money"));
 			} else {
 				sAgeFormat = getResources().getString(R.string.campus_card_rechage_success, getIntent().getStringExtra("money"));
 			}
 			    
 		}
-		
+		mText = (TextView) findViewById(R.id.textView1);
 		mText.setText(sAgeFormat);
 	}
 }

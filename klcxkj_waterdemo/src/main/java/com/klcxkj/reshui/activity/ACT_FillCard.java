@@ -25,6 +25,7 @@ import com.klcxkj.reshui.entry.UserInfo;
 import com.klcxkj.reshui.tools.StringConfig;
 import com.klcxkj.reshui.util.AppPreference;
 import com.klcxkj.reshui.util.GlobalTools;
+import com.klcxkj.reshui.widget.LoadingDialogProgress;
 
 import org.json.JSONObject;
 
@@ -47,7 +48,7 @@ public class ACT_FillCard extends ACT_Network {
 	private Button mButtonBindNext;
 	private CardInfo cardInfo;
 	private UserInfo userInfo;
-
+	private LoadingDialogProgress progress;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,7 @@ public class ACT_FillCard extends ACT_Network {
 		cardInfo = AppPreference.getInstance().getCardInfo();
 		userInfo =AppPreference.getInstance().getUserInfo();
 		if (cardInfo !=null){
-			cardId.setText(cardInfo.getCardID());
+			cardId.setText(cardInfo.getCardID()+"");
 			cardName.setText(cardInfo.getEmployeeName());
 			int sexI = Integer.valueOf(cardInfo.getSexID());
 			String sexNm="";

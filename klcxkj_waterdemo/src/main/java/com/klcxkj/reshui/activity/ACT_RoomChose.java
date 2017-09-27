@@ -153,7 +153,7 @@ public class ACT_RoomChose extends ACT_Network {
         HashMap<String,String> map =new HashMap<>();
         map.put("TelPhone",userinfo.getTelPhone());
         map.put("PrjID",userinfo.getPrjID()+"");
-        map.put("EmployeeID",cardInfo.getEmployeeID());
+        map.put("EmployeeID",cardInfo.getEmployeeID()+"");
         map.put("EmployeeName",cardInfo.getEmployeeName());
         map.put("RoomID",roomId);
         map.put("SexID",cardInfo.getSexID());

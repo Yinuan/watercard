@@ -15,7 +15,6 @@ import com.android.volley.toolbox.Volley;
 import com.klcxkj.klcxkj_waterdemo.R;
 import com.klcxkj.reshui.network.PostRequest;
 import com.klcxkj.reshui.util.NetWorkUtil;
-import com.klcxkj.reshui.widget.LoadingDialogProgress;
 
 import org.json.JSONObject;
 
@@ -27,7 +26,7 @@ import java.util.HashMap;
 public abstract class ACT_Network extends ACT_Base {
 
 	protected RequestQueue mQueue;
-	protected LoadingDialogProgress progress;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

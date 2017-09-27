@@ -49,7 +49,10 @@
         <item name="android:textColorHint">@color/hint</item>
         <item name="android:textSize">16sp</item>
     </style>
-
+    <!--tablayout自定义字体大小-->
+    <style name="tablayout_txt_size">
+        <item name="android:textSize">16sp</item>
+    </style>
     <!--自助申卡-->
     <style name="input_fullline_bg_while">
         <item name="android:layout_width">match_parent</item>

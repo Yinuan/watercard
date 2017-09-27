@@ -4,9 +4,9 @@
     <string name="submit_rechage">立即充值</string>
     <string name="rechang_monney_value_hint">请选择充值金额</string>
     <string name="rechage_money_value_none">未领金额:</string>
-    <string name="rechage_user_balance">卡余额：</string>
-    <string name="rechage_user_name">姓&#8194;&#8194;名：</string>
-    <string name="rechage_cardID">卡&#8194;&#8194;号：</string>
+    <string name="rechage_user_balance">卡余额:</string>
+    <string name="rechage_user_name">姓&#8194;&#8194;名:</string>
+    <string name="rechage_cardID">卡&#8194;&#8194;号:</string>
     <string name="campus_card_apply_sex">性&#8194;&#8194;别:</string>
     <string name="campus_card_apply_student_number">身份证号:</string>
     <string name="campus_card_apply_dormitory_ban">楼&#8194;&#8194;栋:</string>

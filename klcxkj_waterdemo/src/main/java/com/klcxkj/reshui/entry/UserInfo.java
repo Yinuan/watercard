@@ -11,31 +11,39 @@ public class UserInfo {
 
 
     /**
-     * msg : 注册成功
+     * headIcon :
+     * msg : 登录成功
      * SysName : 贵州凯皓
+     * PrjName : 医科大学神奇民族医药学院
      * ServerIP : 192.168.1.250
-     * TelPhone : 18711317007
+     * TelPhone : 18565651403
      * SystemID : 157
+     * prjPhoto :
      * tags : JS_GZ_YKDXMZYYXY,release
-     * LastLogInDT : 2017-09-15 16:11:41
+     * LastLogInDT : 2017-09-05 18:04:20
      * ServerID : 1
+     * hasChargeDev : 1
      * CreditsAccount : 0
      * success : true
-     * alias : 18711317007
+     * alias : 18565651403
      * PrjRecID : 85
      * userType : 0
-     * EmployeeID : 0
+     * EmployeeID : 10
      * ServerPort : 10001
      * PrjID : 388
      */
+    private String headIcon;
     private String msg;
     private String SysName;
+    private String PrjName;
     private String ServerIP;
     private String TelPhone;
     private int SystemID;
+    private String prjPhoto;
     private String tags;
     private String LastLogInDT;
     private int ServerID;
+    private int hasChargeDev;
     private String CreditsAccount;
     private String success;
     private String alias;
@@ -45,131 +53,163 @@ public class UserInfo {
     private int ServerPort;
     private int PrjID;
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public String getHeadIcon() {
+        return headIcon;
     }
 
-    public void setSysName(String SysName) {
-        this.SysName = SysName;
-    }
-
-    public void setServerIP(String ServerIP) {
-        this.ServerIP = ServerIP;
-    }
-
-    public void setTelPhone(String TelPhone) {
-        this.TelPhone = TelPhone;
-    }
-
-    public void setSystemID(int SystemID) {
-        this.SystemID = SystemID;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
-
-    public void setLastLogInDT(String LastLogInDT) {
-        this.LastLogInDT = LastLogInDT;
-    }
-
-    public void setServerID(int ServerID) {
-        this.ServerID = ServerID;
-    }
-
-    public void setCreditsAccount(String CreditsAccount) {
-        this.CreditsAccount = CreditsAccount;
-    }
-
-    public void setSuccess(String success) {
-        this.success = success;
-    }
-
-    public void setAlias(String alias) {
-        this.alias = alias;
-    }
-
-    public void setPrjRecID(int PrjRecID) {
-        this.PrjRecID = PrjRecID;
-    }
-
-    public void setUserType(int userType) {
-        this.userType = userType;
-    }
-
-    public void setEmployeeID(int EmployeeID) {
-        this.EmployeeID = EmployeeID;
-    }
-
-    public void setServerPort(int ServerPort) {
-        this.ServerPort = ServerPort;
-    }
-
-    public void setPrjID(int PrjID) {
-        this.PrjID = PrjID;
+    public void setHeadIcon(String headIcon) {
+        this.headIcon = headIcon;
     }
 
     public String getMsg() {
         return msg;
     }
 
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
     public String getSysName() {
         return SysName;
+    }
+
+    public void setSysName(String sysName) {
+        SysName = sysName;
+    }
+
+    public String getPrjName() {
+        return PrjName;
+    }
+
+    public void setPrjName(String prjName) {
+        PrjName = prjName;
     }
 
     public String getServerIP() {
         return ServerIP;
     }
 
+    public void setServerIP(String serverIP) {
+        ServerIP = serverIP;
+    }
+
     public String getTelPhone() {
         return TelPhone;
+    }
+
+    public void setTelPhone(String telPhone) {
+        TelPhone = telPhone;
     }
 
     public int getSystemID() {
         return SystemID;
     }
 
+    public void setSystemID(int systemID) {
+        SystemID = systemID;
+    }
+
+    public String getPrjPhoto() {
+        return prjPhoto;
+    }
+
+    public void setPrjPhoto(String prjPhoto) {
+        this.prjPhoto = prjPhoto;
+    }
+
     public String getTags() {
         return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 
     public String getLastLogInDT() {
         return LastLogInDT;
     }
 
+    public void setLastLogInDT(String lastLogInDT) {
+        LastLogInDT = lastLogInDT;
+    }
+
     public int getServerID() {
         return ServerID;
+    }
+
+    public void setServerID(int serverID) {
+        ServerID = serverID;
+    }
+
+    public int getHasChargeDev() {
+        return hasChargeDev;
+    }
+
+    public void setHasChargeDev(int hasChargeDev) {
+        this.hasChargeDev = hasChargeDev;
     }
 
     public String getCreditsAccount() {
         return CreditsAccount;
     }
 
+    public void setCreditsAccount(String creditsAccount) {
+        CreditsAccount = creditsAccount;
+    }
+
     public String getSuccess() {
         return success;
+    }
+
+    public void setSuccess(String success) {
+        this.success = success;
     }
 
     public String getAlias() {
         return alias;
     }
 
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
     public int getPrjRecID() {
         return PrjRecID;
+    }
+
+    public void setPrjRecID(int prjRecID) {
+        PrjRecID = prjRecID;
     }
 
     public int getUserType() {
         return userType;
     }
 
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
+
     public int getEmployeeID() {
         return EmployeeID;
+    }
+
+    public void setEmployeeID(int employeeID) {
+        EmployeeID = employeeID;
     }
 
     public int getServerPort() {
         return ServerPort;
     }
 
+    public void setServerPort(int serverPort) {
+        ServerPort = serverPort;
+    }
+
     public int getPrjID() {
         return PrjID;
+    }
+
+    public void setPrjID(int prjID) {
+        PrjID = prjID;
     }
 }

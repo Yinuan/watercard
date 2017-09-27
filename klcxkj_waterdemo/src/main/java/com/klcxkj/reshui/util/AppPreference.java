@@ -36,6 +36,7 @@ public class AppPreference {
         if (mInstance == null) {
             mInstance = new AppPreference();
         }
+
         return mInstance;
     }
     
@@ -100,6 +101,8 @@ public class AppPreference {
         }
         return null;
     }
+
+
 
     /**
      * 2017/8/31
@@ -214,12 +217,22 @@ public class AppPreference {
     public void deleteCardInfo() {
    	 if (mCfgPreference != null) {
    		 SharedPreferences.Editor localEditor = mCfgPreference.edit();
-   		 localEditor.remove("CardInfo");
+   		 localEditor.remove("CardInfo_custom");
    		 localEditor.commit();
         }
    }
 
-
+    /**
+     * 删除设备信息
+     * 2017/9/8
+     */
+    public void deleteCarddevice() {
+        if (mCfgPreference != null) {
+            SharedPreferences.Editor localEditor = mCfgPreference.edit();
+            localEditor.remove("cardDevice_custom");
+            localEditor.commit();
+        }
+    }
     
 
     

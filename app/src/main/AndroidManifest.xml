@@ -79,6 +79,17 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Light.NoTitleBar"
             android:windowSoftInputMode="adjustPan" />
+        <activity android:name="com.klcxkj.reshui.activity.ACT_ApplyCard_Rechge"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.klcxkj.reshui.activity.ACT_PassSetting"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name="com.klcxkj.reshui.activity.ACT_BillActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>

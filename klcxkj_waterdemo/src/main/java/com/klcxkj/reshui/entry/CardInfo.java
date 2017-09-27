@@ -1,118 +1,178 @@
 package com.klcxkj.reshui.entry;
 
+public class CardInfo {
 
-/**
- * autor:OFFICE-ADMIN
- * time:2017/8/31
- * email:yinjuan@klcxkj.com
- * description:卡片信息
- */
-public class CardInfo extends BaseBo{
-	private String AccountMoney;
-	private String BuildingID;
-	private String BuildingName;
-	private String CardID;
-	private String Deposit;
-	private String EmployeeID;
-	private String EmployeeName;
-	private String EmployeeNum;
-	private String Identifier;
-	private String PrefillMoney;
-	private String RoomID;
-	private String RoomName;
+
+	/**
+	 * SexID : 0
+	 * msg : 成功
+	 * Deposit : 10
+	 * RoomName : 1楼101
+	 * BuildingName : 贵州神奇学院春华楼C
+	 * PrefillMoney : 0
+	 * AccountMoney : 0.02
+	 * CardID : 6103
+	 * RoomID : 29
+	 * nCardValue : 100
+	 * Identifier : 123456
+	 * success : true
+	 * EmployeeID : 6103
+	 * BuildingID : 17
+	 * EmployeeName : 06085
+	 * EmployeeNum : 6085
+	 * nCardStatusID : 1
+	 */
 	private String SexID;
-	private String nCardStatusID;
-	private String nCardValue;
+	private String msg;
+	private int Deposit;
+	private String RoomName;
+	private String BuildingName;
+	private double PrefillMoney;
+	private double AccountMoney;
+	private int CardID;
+	private int RoomID;
+	private double nCardValue;
+	private String Identifier;
+	private String success;
+	private int EmployeeID;
+	private int BuildingID;
+	private String EmployeeName;
+	private int EmployeeNum;
+	private int nCardStatusID;
+
+	public void setSexID(String SexID) {
+		this.SexID = SexID;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+
+	public void setDeposit(int Deposit) {
+		this.Deposit = Deposit;
+	}
+
+	public void setRoomName(String RoomName) {
+		this.RoomName = RoomName;
+	}
+
+	public void setBuildingName(String BuildingName) {
+		this.BuildingName = BuildingName;
+	}
+
+	public void setPrefillMoney(double PrefillMoney) {
+		this.PrefillMoney = PrefillMoney;
+	}
+
+	public void setAccountMoney(double AccountMoney) {
+		this.AccountMoney = AccountMoney;
+	}
+
+	public void setCardID(int CardID) {
+		this.CardID = CardID;
+	}
+
+	public void setRoomID(int RoomID) {
+		this.RoomID = RoomID;
+	}
+
+	public void setNCardValue(double nCardValue) {
+		this.nCardValue = nCardValue;
+	}
+
+	public void setIdentifier(String Identifier) {
+		this.Identifier = Identifier;
+	}
+
+	public void setSuccess(String success) {
+		this.success = success;
+	}
+
+	public void setEmployeeID(int EmployeeID) {
+		this.EmployeeID = EmployeeID;
+	}
+
+	public void setBuildingID(int BuildingID) {
+		this.BuildingID = BuildingID;
+	}
+
+	public void setEmployeeName(String EmployeeName) {
+		this.EmployeeName = EmployeeName;
+	}
+
+	public void setEmployeeNum(int EmployeeNum) {
+		this.EmployeeNum = EmployeeNum;
+	}
+
+	public void setNCardStatusID(int nCardStatusID) {
+		this.nCardStatusID = nCardStatusID;
+	}
 
 	public String getSexID() {
 		return SexID;
 	}
-	public void setSexID(String sexID) {
-		SexID = sexID;
+
+	public String getMsg() {
+		return msg;
 	}
-	public String getAccountMoney() {
-		return AccountMoney;
-	}
-	public void setAccountMoney(String accountMoney) {
-		AccountMoney = accountMoney;
-	}
-	public String getBuildingID() {
-		return BuildingID;
-	}
-	public void setBuildingID(String buildingID) {
-		BuildingID = buildingID;
-	}
-	public String getBuildingName() {
-		return BuildingName;
-	}
-	public void setBuildingName(String buildingName) {
-		BuildingName = buildingName;
-	}
-	public String getCardID() {
-		return CardID;
-	}
-	public void setCardID(String cardID) {
-		CardID = cardID;
-	}
-	public String getDeposit() {
+
+	public int getDeposit() {
 		return Deposit;
 	}
-	public void setDeposit(String deposit) {
-		Deposit = deposit;
-	}
-	public String getEmployeeID() {
-		return EmployeeID;
-	}
-	public void setEmployeeID(String employeeID) {
-		EmployeeID = employeeID;
-	}
-	public String getEmployeeName() {
-		return EmployeeName;
-	}
-	public void setEmployeeName(String employeeName) {
-		EmployeeName = employeeName;
-	}
-	public String getEmployeeNum() {
-		return EmployeeNum;
-	}
-	public void setEmployeeNum(String employeeNum) {
-		EmployeeNum = employeeNum;
-	}
-	public String getIdentifier() {
-		return Identifier;
-	}
-	public void setIdentifier(String identifier) {
-		Identifier = identifier;
-	}
-	public String getPrefillMoney() {
-		return PrefillMoney;
-	}
-	public void setPrefillMoney(String prefillMoney) {
-		PrefillMoney = prefillMoney;
-	}
-	public String getRoomID() {
-		return RoomID;
-	}
-	public void setRoomID(String roomID) {
-		RoomID = roomID;
-	}
+
 	public String getRoomName() {
 		return RoomName;
 	}
-	public void setRoomName(String roomName) {
-		RoomName = roomName;
-	}
-	public String getnCardStatusID() {
-		return nCardStatusID;
-	}
-	public void setnCardStatusID(String nCardStatusID) {
-		this.nCardStatusID = nCardStatusID;
-	}
-	public String getnCardValue() {
-		return nCardValue;
-	}
-	public void setnCardValue(String nCardValue) {
-		this.nCardValue = nCardValue;
+
+	public String getBuildingName() {
+		return BuildingName;
 	}
 
+	public double getPrefillMoney() {
+		return PrefillMoney;
+	}
+
+	public double getAccountMoney() {
+		return AccountMoney;
+	}
+
+	public int getCardID() {
+		return CardID;
+	}
+
+	public int getRoomID() {
+		return RoomID;
+	}
+
+	public double getNCardValue() {
+		return nCardValue;
+	}
+
+	public String getIdentifier() {
+		return Identifier;
+	}
+
+	public String getSuccess() {
+		return success;
+	}
+
+	public int getEmployeeID() {
+		return EmployeeID;
+	}
+
+	public int getBuildingID() {
+		return BuildingID;
+	}
+
+	public String getEmployeeName() {
+		return EmployeeName;
+	}
+
+	public int getEmployeeNum() {
+		return EmployeeNum;
+	}
+
+	public int getNCardStatusID() {
+		return nCardStatusID;
+	}
 }

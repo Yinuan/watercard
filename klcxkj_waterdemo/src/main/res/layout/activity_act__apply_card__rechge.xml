@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_view"
+    android:layout_height="match_parent">
+
+  <include layout="@layout/top_title_style"></include>
+
+
+    <ImageView
+        android:layout_marginTop="45dp"
+        android:layout_width="98dp"
+        android:layout_height="98dp"
+        android:src="@mipmap/apply_change"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <TextView
+        android:id="@+id/apply_card_rechge_content"
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="apply_card_rechege"
+        android:textColor="@color/txt_two"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginLeft="36dp"/>
+
+    <Button
+        android:id="@+id/apply_card_rechge_btn"
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="立即充值"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:background="@drawable/btn_yuyue"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"/>
+</LinearLayout>  
