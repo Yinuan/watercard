@@ -7,5 +7,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <style name="kTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#12aaf6</item>
+        <item name="colorPrimaryDark">#12aaf6</item>
+        <item name="colorAccent">#12aaf6</item>
+    </style>
+    <style name="oldTheme" parent="@android:style/Theme.Light.NoTitleBar"></style>
 </resources>

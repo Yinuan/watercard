@@ -94,6 +94,7 @@ public class TransferFragment extends BaseFragment {
     }
 
     private void bindview() {
+        smartRefreshLayout.setEnableLoadmore(false);
         smartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
@@ -101,7 +102,7 @@ public class TransferFragment extends BaseFragment {
                 listDatas =new ArrayList<>();
                 mDatas =new ArrayList<>();
                 maxCount=20;
-                smartRefreshLayout.setEnableLoadmore(true);
+
                 loadBillFromServer();
             }
         });
@@ -113,13 +114,10 @@ public class TransferFragment extends BaseFragment {
                    @Override
                    public void run() {
                        if (mDatas.size()-listDatas.size()<=20 ){//20-40
-                           if (mDatas.size()==listDatas.size()){
-                               //不在上拉
-                               smartRefreshLayout.setEnableLoadmore(false);
-                           }else {
-                               for (int i = maxCount; i <mDatas.size() ; i++) {
-                                   listDatas.add(mDatas.get(i));
-                               }
+                           //不在上拉
+                           smartRefreshLayout.setEnableLoadmore(false);
+                           for (int i = maxCount; i <mDatas.size() ; i++) {
+                               listDatas.add(mDatas.get(i));
                            }
 
                        }else { //40
@@ -174,6 +172,7 @@ public class TransferFragment extends BaseFragment {
                 for (int i = 0; i <20 ; i++) {
                     listDatas.add(mDatas.get(i));
                 }
+                smartRefreshLayout.setEnableLoadmore(true);
             }else {
                 listDatas.addAll(mDatas);
             }

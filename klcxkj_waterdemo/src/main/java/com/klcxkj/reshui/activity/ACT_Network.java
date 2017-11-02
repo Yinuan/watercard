@@ -1,9 +1,7 @@
 package com.klcxkj.reshui.activity;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -12,6 +10,7 @@ import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
+import com.jaeger.library.StatusBarUtil;
 import com.klcxkj.klcxkj_waterdemo.R;
 import com.klcxkj.reshui.network.PostRequest;
 import com.klcxkj.reshui.util.NetWorkUtil;
@@ -31,13 +30,14 @@ public abstract class ACT_Network extends ACT_Base {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+		/*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 			// 透明状态栏
 			getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 		}else {
 			View tView =findViewById(R.id.top_menu_view);
 			tView.setVisibility(View.GONE);
-		}
+		}*/
+		StatusBarUtil.setColor(this,getResources().getColor(R.color.act_bg),0);
 		mQueue = Volley.newRequestQueue(getApplicationContext());// thread
 																	// pool(4)
 	}

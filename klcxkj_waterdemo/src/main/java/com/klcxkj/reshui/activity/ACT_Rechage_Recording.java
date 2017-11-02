@@ -64,13 +64,15 @@ public class ACT_Rechage_Recording extends ACT_Network {
     }
 
     private void bindView() {
+        //不在上拉
+        refreshLayout.setEnableLoadmore(false);
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 refreshlayout.finishRefresh(2000);
                 mDatas.clear();
                 listDatas.clear();
-                refreshLayout.setEnableLoadmore(true);
+
                 initdata();
             }
         });
@@ -82,14 +84,12 @@ public class ACT_Rechage_Recording extends ACT_Network {
                     @Override
                     public void run() {
                         if (mDatas.size()-listDatas.size()<=20 ){//20-40
-                            if (mDatas.size()==listDatas.size()){
-                                //不在上拉
-                                refreshLayout.setEnableLoadmore(false);
-                            }else {
-                                for (int i = maxCount; i <mDatas.size() ; i++) {
-                                    listDatas.add(mDatas.get(i));
-                                }
+                            //不在上拉
+                            refreshLayout.setEnableLoadmore(false);
+                            for (int i = maxCount; i <mDatas.size() ; i++) {
+                                listDatas.add(mDatas.get(i));
                             }
+
 
                         }else { //40
                             maxCount=maxCount+20;
@@ -162,6 +162,7 @@ public class ACT_Rechage_Recording extends ACT_Network {
                     for (int i = 0; i <20 ; i++) {
                         listDatas.add(mDatas.get(i));
                     }
+                    refreshLayout.setEnableLoadmore(true);
                 }else {
                     listDatas.addAll(mDatas);
                 }

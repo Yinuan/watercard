@@ -22,4 +22,5 @@
     <color name="bg_view">#e5e5e5</color>
     <color name="list_name_text">#a2aaac</color>
     <color name="hint">#a2aaac</color>
+    <color name="act_bg">#12aaf6</color><!-- activity 背景色 -->
 </resources>

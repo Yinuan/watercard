@@ -156,6 +156,7 @@ public class ACT_Rechage extends ACT_Network{
 
 				Log.d("ACT_Rechage", "冲值金额：="+edit_money);
 				String monneyValue =edit_money.substring(0,edit_money.length()-1);
+				Log.d("ACT_Rechage", monneyValue);
 				Log.d("ACT_Rechage", "monney=="+monneyValue);
 				HashMap<String, String> params = new HashMap<String, String>();
 				params.put("PrjID", userInfo.getPrjID()+"");
@@ -163,7 +164,7 @@ public class ACT_Rechage extends ACT_Network{
 				params.put("EmployeeID", mCardInfo.getEmployeeID()+"");
 				params.put("CardID", mCardInfo.getCardID()+"");
 				//monneyValue
-				params.put("totalFee", edit_money);
+				params.put("totalFee", monneyValue);
 				params.put("ServerIP", userInfo.getServerIP());
 				params.put("ServerPort", userInfo.getServerPort()+"");
 				sendPostRequest(urlGetAlipayInfor, params);
@@ -475,7 +476,7 @@ public class ACT_Rechage extends ACT_Network{
 	 *            待签名订单信息
 	 */
 	public String sign(String content) {
-		return SignUtils.sign(content,StringConfig.RSA_PRIVATE);
+		return SignUtils.sign(content,StringConfig.  RSA_PRIVATE);
 	}
 
 	/**

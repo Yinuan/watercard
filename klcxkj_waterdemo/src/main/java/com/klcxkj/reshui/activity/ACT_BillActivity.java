@@ -1,6 +1,5 @@
 package com.klcxkj.reshui.activity;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -9,10 +8,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.jaeger.library.StatusBarUtil;
 import com.klcxkj.klcxkj_waterdemo.R;
 import com.klcxkj.reshui.fragment.ConsumptionFragment;
 import com.klcxkj.reshui.fragment.RechargeFragment;
@@ -27,13 +26,14 @@ public class ACT_BillActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act__bill);
         // 判断当前SDK版本号，如果是4.4以上，就是支持沉浸式状态栏的 //
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+       /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             // 透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }else {
             tView =findViewById(R.id.top_menu_view);
             tView.setVisibility(View.GONE);
-        }
+        }*/
+        StatusBarUtil.setColor(this,getResources().getColor(R.color.act_bg),0);
         initview();
     }
 

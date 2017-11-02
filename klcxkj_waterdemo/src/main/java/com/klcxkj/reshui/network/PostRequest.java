@@ -25,7 +25,6 @@ public class PostRequest extends Request<JSONObject> {
 		private Map<String,String> mHeaders=new HashMap<String,String>(1);
 	    public PostRequest(String url, Listener<JSONObject> listener, ErrorListener errorListener, Map<String, String> map) {
 	        super(Method.POST, url, errorListener);
-	             
 	        mListener = listener;
 	        mMap = map;
 	    }

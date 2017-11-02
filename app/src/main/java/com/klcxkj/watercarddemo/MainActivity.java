@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // 登录/注册
                 Intent intent =new Intent(MainActivity.this, ACT_CardCenter.class);
-                intent.putExtra("tellPhoneNum","18565651433");//手机号码
-                intent.putExtra("prjRecId","127");//项目ID
+                intent.putExtra("tellPhoneNum","18565651403");//手机号码
+                intent.putExtra("prjRecId","1");//项目ID
                 startActivity(intent);
 
             }

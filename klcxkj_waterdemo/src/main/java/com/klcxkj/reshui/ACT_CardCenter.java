@@ -234,6 +234,7 @@ public class ACT_CardCenter extends ACT_Network implements View.OnClickListener{
         HashMap<String,String> map =new HashMap<>();
         map.put("telPhone",tellPhone);
        // map.put("logPwd",loginPass);
+
         sendPostRequest(login,map);
     }
 

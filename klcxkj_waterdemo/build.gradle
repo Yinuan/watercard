@@ -37,8 +37,10 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.google.code.gson:gson:2.8.1'
     compile 'com.navercorp.volleyextensions:volley-views:2.0.1'
-    compile 'com.android.support:appcompat-v7:25.0.0-alpha1'
+
     compile 'com.android.support:recyclerview-v7:25.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
-    compile 'com.android.support:design:25+'
+
+
+    compile 'com.jaeger.statusbarutil:library:1.4.0'
 }
